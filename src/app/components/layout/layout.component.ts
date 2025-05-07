@@ -2,14 +2,13 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Router, RouterModule, RouterOutlet, Routes } from '@angular/router';
 import { NavbarComponent } from '../navbar/navbar.component';
-import { SidebarComponent } from '../sidebar/sidebar.component';
-import { PageNameCardComponent } from '../page-name-card/page-name-card.component';
+import { SidebarComponent } from '../sidebar/sidebar.component'; 
 
 
 @Component({
   selector: 'app-layout',
   standalone: true,
-  imports: [CommonModule,NavbarComponent,SidebarComponent,PageNameCardComponent,RouterOutlet,RouterModule],
+  imports: [CommonModule,NavbarComponent,SidebarComponent,RouterOutlet,RouterModule],
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.css'
 })
