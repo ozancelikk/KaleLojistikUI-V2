@@ -1,0 +1,46 @@
+
+
+.labels {
+    font-size: 11px
+}
+
+.add-experience:hover {
+    background: #BA68C8;
+    color: #fff;
+    cursor: pointer;
+    border: solid 1px #BA68C8
+}
+.profile-img{
+    border-radius: 50%;
+}
+.border-right{
+    border-right: 0.5px solid rgba(182, 181, 181, 0.356);
+}
+.button-save{
+    display: flex;
+    justify-content: flex-end;
+}
+
+@media (max-width:1600px) {
+    .smallScreen {
+        width: 50%;
+    }
+    .border-right{
+        border-bottom: 0.5px solid rgba(182, 181, 181, 0.356);
+    }
+}
+@media (max-width:1200px) {
+    .smallScreen {
+        width: 100%;
+        margin-bottom: 3%;
+    }
+    .border-right{
+        border-right:  none;
+    }
+    .smallScreenButton{
+        margin-bottom: 1rem;
+    }
+    .button-save{
+        margin-bottom: 2%;
+    }
+}

@@ -1,0 +1,60 @@
+<div class="nav-btn-group ttd-btn-grp">
+    <div class="button-container">
+        <button data-bs-toggle="modal" data-bs-target="#blockModal" class="btn btn-sm add-btn-grp" *app="addFlorrRole"><i class="fa-solid fa-circle-plus"></i> {{lang.addNewFloor}} </button>
+    </div>
+    
+    <div class="button-container">
+        <div class="dropdown top-bar-dropdown">
+            <button class="btn btn-sm add-btn-grp dropdown-toggle navbar-button-bottom" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                {{lang.numberofData}}> {{ selectedItemsPerPage }}
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <li *ngFor="let option of itemsPerPageOptions">
+                    <button class="dropdown-item btn" type="button" (click)="onItemsPerPageChange(option)">
+                        {{ option }}
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="button-container">
+        <div class="dropdown top-bar-dropdown" style="margin-left: 0px !important;">
+            <button class="btn btn-sm add-btn-grp dropdown-toggle navbar-button-bottom" type="button"
+                id="branchMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                {{lang.sortByBranch}}> {{ branchName }}
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="branchMenuButton">
+                <li *ngFor="let branch of branchs">
+                    <button class="dropdown-item btn " type="button"
+                        (click)="onBranchChange(branch.id,branch.branchName)">
+                        {{ branch.branchName }}
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="button-container">
+        <div class="dropdown top-bar-dropdown" style="margin-left: 0px !important;">
+            <button class="btn btn-sm add-btn-grp dropdown-toggle navbar-button-bottom" type="button"
+                id="blockMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                {{lang.sortByBlock}}> {{ blockName }}
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="blockMenuButton">
+                <li *ngFor="let block of blocks">
+                    <button class="dropdown-item btn " type="button"
+                        (click)="onBlockChange(block.id,block.blockName)">
+                        {{ block.blockName }}
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="search-group">
+        <div class="search-container">
+            <i class="fa-solid fa-magnifying-glass" style="position: absolute;"></i>
+            <input style="border-bottom:none;padding: 5px 5px; text-indent: 15px;" type="text" [(ngModel)]="filterText" class="form-control" [placeholder]="lang.search">
+        </div>
+    </div>
+</div>
+<app-floor [filterText]="filterText" [filterBranchId]="branchId" [filterBlockId]="blockId"></app-floor>

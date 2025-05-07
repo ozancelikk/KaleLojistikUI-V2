@@ -1,0 +1,59 @@
+<div class="modal fade" id="employeeDetailsModal" tabindex="-1" aria-labelledby="employeeDetailsModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog  modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-6" id="employeeDetailsModalLabel"><i class="fa-solid fa-circle-info"></i>
+                    {{lang.employees}} {{lang.details}}</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" *ngIf="employeeDetail?.length>0">
+                <ng-container *ngFor="let employee of employeeDetail;let i=index">
+                    <div class="">
+                        <label class="chooseLabel" style="font-size: 13pt;"> {{i+1}}. {{lang.employee}}</label>
+                        <hr>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect">
+                            <label class="chooseLabel"><i class="fa-solid fa-code-branch"></i>
+                                {{lang.name}}</label>
+                            <input type="text" class="form-select forms chooseSelect detail"
+                                [value]="employee.name" readonly>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect"
+                            style="padding-right: 0px !important;">
+                            <label class="chooseLabel"><i class="fa-regular fa-building icon-spacing"></i>
+                                {{lang.surname}}</label>
+                            <input type="text" class="form-select forms chooseSelect detail" [value]="employee.surname"
+                                readonly>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect">
+                            <label class="chooseLabel"><i class="fa-solid fa-stairs icon-spacing icon-spacing"></i>
+                                {{lang.departmentName}}</label>
+                            <input class="form-select forms chooseSelect detail"
+                                [value]="getDepartmentName(employee.departmentId)" readonly>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect"
+                            style="padding-right: 0px !important;">
+                            <label class="chooseLabel"><i class="fa-solid fa-door-open icon-spacing"></i>
+                                {{lang.email}}</label>
+                            <input class="form-select forms chooseSelect detail" [value]="employee.email" readonly>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect">
+                            <label class="chooseLabel"><i class="fa-solid fa-house"></i> {{lang.phonenumber}}</label>
+                            <input class="form-select forms chooseSelect detail" [value]="employee.phoneNumber"
+                                readonly>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+            <div  *ngIf="employeeDetail?.length==0">
+                  <div class="card">
+                    <div class="card-body">
+                      <h6 class="card-title">{{lang.noDataFound}}</h6>
+                    </div>
+                  </div>
+              </div>
+        </div>
+    </div>
+</div>

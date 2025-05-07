@@ -1,0 +1,81 @@
+<h2>Şikayet Sorgulama (ID ile)</h2>
+
+<input #idInput type="text" placeholder="Şikayet ID" />
+<button (click)="getComplaintById(idInput.value)">Sorgula</button>
+
+<hr />
+
+<div *ngIf="selectedComplaint">
+  <p><strong>ID:</strong> {{ selectedComplaint.id}}</p>
+  <p><strong>Mesaj:</strong> {{ selectedComplaint.complaintMessageContent}}</p>
+  <p><strong>Durum:</strong> {{ selectedComplaint.status}}</p>  
+</div>
+
+
+<div *ngIf="selectedComplaint">
+  <h3>Seçilen Şikayet</h3>
+  <p><strong>ID:</strong> {{ selectedComplaint.id }}</p>
+  <p><strong>Mesaj:</strong> {{ selectedComplaint.complaintMessageContent }}</p>
+  <p><strong>Durum:</strong> {{ selectedComplaint.status }}</p>
+
+
+
+  <label for="response">Yanıt Yaz:</label><br />
+  <textarea id="response" [(ngModel)]="responseText" rows="3" cols="50"></textarea><br />
+  <button (click)="sendResponse()">Yanıtı Gönder</button>
+
+
+  <div *ngIf="selectedComplaint.response">
+    <p><strong>Gönderilmiş Yanıt:</strong> {{ selectedComplaint.response }}</p>
+  </div>
+</div>
+
+<ul>
+  <li *ngFor="let c of complaints">
+    <strong>{{ c.id }}</strong> - {{ c.complaintMessageContent }}
+    <button (click)="getStatusOnly(c.id)">Durumunu Göster</button>
+
+    <button (click)="deleteComplaint(c.id)">Sil</button>
+  </li>
+</ul>
+
+
+
+
+<h3>Yeni Şikayet Ekle</h3>
+
+<form [formGroup]="complaintForm" (ngSubmit)="onSubmit()">
+  <label for="type">Şikayet Türü:</label><br />
+  <input id="type" formControlName="type" /><br />
+
+  <label for="shipmentId">Kargo ID:</label><br />
+  <input id="shipmentId" formControlName="shipmentId" /><br />
+
+  <label for="message">Mesaj:</label><br />
+  <textarea id="message" formControlName="complaintMessageContent"></textarea><br />
+
+  <button type="submit" [disabled]="!complaintForm.valid">Gönder</button>
+</form>
+
+
+
+<div *ngIf="selectedComplaint">
+  <h3>Şikayet Güncelle</h3>
+
+  <label for="type">Şikayet Türü:</label><br />
+  <input id="type" [(ngModel)]="selectedComplaint.type" /><br />
+
+  <label for="shipmentId">Kargo ID:</label><br />
+  <input id="shipmentId" [(ngModel)]="selectedComplaint.shipmentId" /><br />
+
+  <label for="message">Mesaj:</label><br />
+  <textarea id="message" [(ngModel)]="selectedComplaint.complaintMessageContent" rows="3"></textarea><br />
+
+  <label for="status">Durum:</label><br />
+  <input id="status" [(ngModel)]="selectedComplaint.status" /><br />
+
+  <label for="response">Yanıt:</label><br />
+  <textarea id="response" [(ngModel)]="selectedComplaint.response" rows="2"></textarea><br />
+
+  <button (click)="updateSelectedComplaint()">Şikayeti Güncelle</button>
+</div>

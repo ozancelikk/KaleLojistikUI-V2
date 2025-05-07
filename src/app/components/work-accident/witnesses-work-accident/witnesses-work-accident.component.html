@@ -1,0 +1,38 @@
+<div class="modal fade" id="witnessWorkAccidentModal" tabindex="-1" aria-labelledby="witnessWorkAccidentModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-6" id="witnessWorkAccidentModalLabel"><i class="fa-solid fa-circle-info"></i> {{lang.witness}} {{lang.details}} </h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" *ngIf="workAccident">
+                <div class="" style="width:100%; margin-bottom: 1.5rem;"
+                    *ngFor="let witness of workAccident.workAccidentAdmin;let i =index">
+
+                    <label class="chooseLabel"
+                        style="border-bottom: 0.5px solid gray; width: 95%;  margin-bottom: 0.5rem; background-color: rgba(161, 161, 161, 0.425); padding: 0.3rem; ">{{i+1}}.
+                        {{lang.witness}}</label>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect modalSelect">
+                            <label class="chooseLabel"><i class="fa-solid fa-user-tag"></i> {{lang.name}} {{lang.surname}}</label>
+                            <input class="form-select chooseSelect detail forms"value="{{witness.name}} {{witness.surname}}" readonly>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect modalSelect">
+                            <label class="chooseLabel"><i class="fa-solid fa-tags"></i> {{lang.mission}}</label>
+                            <input class="form-select chooseSelect detail forms" value="{{witness.mission}}" readonly>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect modalSelect">
+                            <label class="chooseLabel"><i class="fa-solid fa-location-dot"></i> {{lang.address}}</label>
+                            <input class="form-select chooseSelect detail forms" value="{{witness.address}}" readonly>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect modalSelect">
+                            <label class="chooseLabel"><i class="fa-solid fa-phone"></i> {{lang.phonenumber}}</label>
+                            <input class="form-select chooseSelect detail forms" value="{{witness.phoneNumber}}" readonly>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

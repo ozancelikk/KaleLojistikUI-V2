@@ -1,0 +1,18 @@
+.delete-btn {
+    background: none;
+    border: none;
+  }
+  
+  .delete-btn .icon {
+    color: #333;
+    font-size: 20px;
+    transition: color 0.3s ease; 
+  }
+  
+  .delete-btn:hover .icon {
+    color: red; 
+  }
+  .task-number {
+    display: flex;
+    align-items: center; 
+  }

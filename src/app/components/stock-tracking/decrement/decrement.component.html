@@ -1,0 +1,13 @@
+<div class="container-fluid" style="padding-left: 20px;padding-right: 20px;">
+    <app-navbar-decrement></app-navbar-decrement>
+    <ag-grid-angular id="datatable" style="width: 100%" class="ag-theme-alpine" [columnDefs]="columnDefs"
+        [defaultColDef]="defaultColDef" [rowSelection]="'multiple'" [enableCellTextSelection]="true"
+        [cacheBlockSize]="cacheBlockSize" [cacheOverflowSize]="cacheOverflowSize"
+        [maxConcurrentDatasourceRequests]="maxConcurrentDatasourceRequests"
+        [infiniteInitialRowCount]="infiniteInitialRowCount" [enableBrowserTooltips]="true"
+        [overlayNoRowsTemplate]="noRowsTemplate" [maxBlocksInCache]="maxBlocksInCache" [rowData]="rowData"
+        [gridOptions]="gridOptions" (gridReady)="onGridReady($event)"
+        [suppressScrollOnNewData]="true"></ag-grid-angular>
+</div>
+<app-add-decrement (decrementEmit)="getAllDecrement()"></app-add-decrement>
+<app-update-decrement (decrementEmit)="getAllDecrement()" [decrementDetails]="(decrement)"></app-update-decrement>

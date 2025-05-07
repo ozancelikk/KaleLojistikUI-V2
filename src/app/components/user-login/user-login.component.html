@@ -1,0 +1,30 @@
+<body>
+  <div class="container-login d-flex align-items-center justify-content-center vh-100">
+    <div class="text-center">
+      <div>
+      </div>
+      <div class="login-title ">
+        <img src="/assets/img/logo-White.png" width="250" alt="" srcset="">
+        <p style="font-size: large;" id="login-description">{{lang.newGenerationCleaning}}</p>
+      </div>
+      <div class="options-panel">
+        <a [routerLink]="['/employee-login']">{{lang.personelLogin}} <i
+            class="fa-solid fa-person-walking-arrow-right"></i></a>
+      </div> 
+      <form [formGroup]="loginForm">
+        <input type="email" id="inputEmail" formControlName="email" class="form-control mb-2"
+          placeholder="{{lang.email}}" required autofocus>
+        <input type="password" id="inputPassword" class="form-control mb-3" placeholder="{{lang.password}}" required
+          formControlName="password">
+        <div class="button-group">
+          <button class="button-37" type="submit" (click)="login()">{{lang.signIn}}</button>
+
+        </div>
+        <div class="password-button">
+          <a [routerLink]="['/email-post']"> {{lang.forgotPassword}}</a>
+        </div>
+      </form>
+      <p class="mt-5 mb-3 text-muted">&copy; TTD V1.3</p>
+    </div>
+  </div>
+</body>

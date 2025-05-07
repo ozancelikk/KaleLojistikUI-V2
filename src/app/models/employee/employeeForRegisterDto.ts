@@ -1,0 +1,22 @@
+export interface EmployeeForRegister{
+    name:string;
+    surname:string;
+    email:string;
+    phoneNumber:number;
+    age:number;
+    title:string;
+    departmentId:string;
+    status:boolean;
+    dateOfStart:string
+    branchId:string;
+    bloodGroup:string
+    birthDay:string;
+    educationalStatus:string
+    lowerSize:string
+    upperSize:string
+    shoeSize:string
+    dateOfFinish:string
+    emergencyContactName:string
+    emergencyContactNumber:string
+    emergencyContactRelationship:string
+}

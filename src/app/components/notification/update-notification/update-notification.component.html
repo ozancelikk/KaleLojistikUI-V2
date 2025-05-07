@@ -1,0 +1,47 @@
+<div class="modal fade" id="notificationUpdateModal" tabindex="-1" aria-labelledby="notificationUpdateModalLabel" *app="updateRole"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-6" id="notificationUpdateModalLabel"><i class="fa-regular fa-pen-to-square"></i> {{lang.updateNotification}}</h1>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="notificationUpdateForm" style="margin-bottom: 3rem;" *ngIf="notificationUpdateForm">
+                    <div class="row">
+                        <div class="mb-3 col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect">
+                            <label class="chooseLabel"><i class="fa-solid fa-comment-dots"></i> {{lang.notificationName}}</label>
+                            <input type="text" class="modal-input" class="form-control" formControlName="notificationName" readonlystyle="margin-bottom: 0px !important;">
+                        </div>
+                        <div class="mb-3 col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect right">
+                            <label class="chooseLabel"><i class="fa-solid fa-comment"></i> {{lang.notificationDescription}}</label>
+                            <input type="text" class="modal-input" class="form-control" formControlName="notificationDescription" readonlystyle="margin-bottom: 0px !important;">
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect">
+                            <label class="chooseLabel"><i class="fa-solid fa-calendar-day"></i> {{lang.startNotificationDate}}</label>
+                            <input class="form-select chooseSelect detail" type="datetime-local" formControlName="startNotificationDate">
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect right">
+                            <label class="chooseLabel"><i class="fa-solid fa-calendar-day"></i> {{lang.endNotificationDate}}</label>
+                            <input class="form-select chooseSelect detail" type="datetime-local" formControlName="endNotificationDate">
+                        </div>
+                        <div class="mb-3 col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect">
+                            <label class="chooseLabel"><i class="fa-solid fa-stopwatch"></i> {{lang.remindertime}}</label>
+                            <input type="number" class="modal-input" class="form-control" formControlName="reminderTime" readonlystyle="margin-bottom: 0px !important;">
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect" style="padding-right: 0px !important;">
+                            <label class="chooseLabel mb-2"><i class="fa-solid fa-user"></i> {{lang.personName}}</label>
+                            <select class="form-select chooseSelect" aria-label="Default select example" formControlName="personId"style="font: small-caption !important;">
+                              <option value="" disabled selected>{{lang.chooseEmployee}}</option>
+                              <option *ngFor="let person of personDetails" [value]="person.id"> {{person.name}} {{person.surname}} {{person.title}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+                <div class="btn-location">
+                    <button type="button" class="button-4" data-bs-dismiss="modal"><i class="fa-solid fa-circle-xmark"></i> {{lang.cancel}}</button>
+                    <a (click)="updateNotification()" class="button-20" data-bs-dismiss="modal"><i class="fa-regular fa-pen-to-square"></i> {{lang.update}} </a>
+                  </div>
+            </div>
+        </div>
+    </div>
+</div>

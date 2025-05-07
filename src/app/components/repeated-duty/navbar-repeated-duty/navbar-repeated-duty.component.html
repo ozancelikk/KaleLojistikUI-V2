@@ -1,0 +1,4 @@
+<button data-bs-toggle="modal" data-bs-target="#addRepeatedDutyModal"  class="btn button-4" style="margin-bottom: 1rem;"><i class="fa-solid fa-rotate-right" *app="addRole"></i> {{lang.addNewRepeatedDuty}} </button>
+<button class="btn button-4" (click)="getBySelectedIdActive()" style="margin-bottom: 1rem; margin-left: 1rem;" *app="activeRole"><i class="fa-solid fa-circle-check"></i> {{lang.enableSelectAll}} </button>
+<button class="btn button-4" (click)="getBySelectedIdPassive()" style="margin-bottom: 1rem;margin-left: 1rem;" *app="passiveRole"><i class="fa-solid fa-circle-xmark"></i> {{lang.disableSelectAll}} </button>
+<button data-bs-toggle="modal" data-bs-target="#addBatchRepeatedDutyModal"   class="btn button-4" style="margin-bottom: 1rem; margin-left: 1rem;"><i class="fa-solid fa-rotate-right" *app="addRole"></i> {{lang.addBatchRepeatedDuty}} </button>

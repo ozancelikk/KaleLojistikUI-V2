@@ -1,0 +1,135 @@
+<div class="modal fade" id="addWorkAccidentModal" tabindex="-1" aria-labelledby="addWorkAccidentModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-6" id="addWorkAccidentModalLabel"><i class="fa-solid fa-circle-plus"></i>
+          {{lang.addNewWorkAccident}}</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="workAccidentAddForm">
+          <div class="row">
+            <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect">
+              <label class="chooseLabel"><i class="fa-solid fa-comment"></i> {{lang.description}}</label>
+              <input class="form-select forms chooseSelect detail" formControlName="description">
+            </div>
+            <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect" style="padding-right: 0px !important;">
+              <label class="chooseLabel"><i class="fa-solid fa-person"></i> {{lang.fatherName}}</label>
+              <input class="form-select forms chooseSelect detail" formControlName="fatherName">
+            </div>
+            <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect">
+              <label class="chooseLabel"><i class="fa-solid fa-arrow-down-9-1"></i>{{lang.insuranceRegistrationNumber}}</label>
+              <input class="form-select forms chooseSelect detail" type="number" formControlName="insuranceRegistrationNumber">
+            </div>
+            <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect" style="padding-right: 0px !important;">
+              <label class="chooseLabel"><i class="fa-solid fa-id-card"></i> {{lang.identificationNumber}}</label>
+              <input class="form-select forms chooseSelect detail" type="number" formControlName="identificationNumber">
+            </div>
+            <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect">
+              <label class="chooseLabel"><i class="fa-solid fa-cake-candles"></i> {{lang.birthDay}}</label>
+              <input class="form-select  chooseSelect detail" type="date" formControlName="birthDay">
+            </div>
+            <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect" style="padding-right: 0px !important;">
+              <label class="chooseLabel"><i class="fa-solid fa-map-location-dot"></i> {{lang.placeOfBirth}}</label>
+              <input class="form-select forms chooseSelect detail" formControlName="placeOfBirth">
+            </div>
+            <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect">
+              <label class="chooseLabel"><i class="fa-solid fa-tags"></i> {{lang.mission}}</label>
+              <input class="form-select forms chooseSelect detail" formControlName="mission">
+            </div>
+            <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect" style="padding-right: 0px !important;">
+              <label class="chooseLabel"><i class="fa-solid fa-calendar-days"></i> {{lang.dateOfStart}}</label>
+              <input class="form-select  chooseSelect detail" type="date" formControlName="dateOfStart">
+            </div>
+            <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect">
+              <label class="chooseLabel"><i class="fa-solid fa-person-falling-burst"></i> {{lang.accidentDate}}</label>
+              <input class="form-select  chooseSelect detail"type="datetime-local" formControlName="accidentDate">
+            </div>
+            <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect" style="padding-right: 0px !important;">
+              <label class="chooseLabel"><i class="fa-solid fa-users"></i> {{lang.numberOfEmployees}}</label>
+              <input class="form-select forms chooseSelect detail" type="number" formControlName="numberOfEmployees">
+            </div>
+            <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect">
+              <label class="chooseLabel"><i class="fa-solid fa-calendar-day"></i> {{lang.startDateToday}}</label>
+              <input class="form-select forms chooseSelect detail" type="datetime-local" formControlName="workingStartDate">
+            </div>
+            <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect" style="padding-right: 0px !important;">
+              <label class="chooseLabel"><i class="fa-solid fa-phone"></i> {{lang.phonenumber}}</label>
+              <input class="form-select forms chooseSelect detail" type="number" formControlName="phoneNumber">
+            </div>
+            <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect">
+              <label class="chooseLabel"><i class="fa-solid fa-location-dot"></i> {{lang.address}}</label>
+              <input class="form-select forms chooseSelect detail" formControlName="address">
+            </div>
+            <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect" style="padding-right: 0px !important;">
+              <label class="chooseLabel mb-2"><i class="fa-solid fa-users icon-spacing"></i>{{lang.employeeName}}</label>
+              <select class="form-select chooseSelect" aria-label="Default select example" formControlName="employeeId"style="font: small-caption !important;">
+                <option value="" disabled selected>{{lang.chooseEmployee}}</option>
+                <option *ngFor="let employee of employees" [value]="employee.id"> {{employee.name}} {{employee.surname}} </option>
+              </select>
+          </div>
+          <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect">
+            <label class="chooseLabel">{{lang.lossOfLimb}}</label><br>
+            
+            <label class="switch">
+              <input type="checkbox" formControlName="lossOfLimb">
+              <span class="slider round"></span>
+            </label>
+
+            <div style="display: flex; align-items: center; margin-top: 10px;">
+              <input *ngIf="workAccidentAddForm.get('lossOfLimb').value" type="text" placeholder="{{lang.lossOfLimb}}" formControlName="lossOfLimbText">
+            </div>
+          </div>
+        </div>
+          <div class="task-grp">
+            <button class="btn btn-sm add-btn-grp" style="margin-left: 1%;padding: 2%;" type="button"
+              (click)="addTask()" [disabled]="tasksArray.length >= 4"> {{lang.addNewWitness}} <fa-icon
+                class="sidebar-icon" [icon]="faPlus"></fa-icon>
+            </button>
+            <h6>{{lang.pleaseAddMinimumPeople}}</h6>
+          </div>
+
+          <div formArrayName="workAccidentAdmin">
+            <div *ngFor="let task of tasksArray.controls; let i=index" class="task-item">
+              <div class="task-number">
+                <span> {{ getRoleDescriptionByIndex(i) }} <button class="btn" style="font-size: large;font: bold;"
+                    type="button" (click)="removeTask(i)">
+                    <div class="icon">-</div>
+                  </button></span>
+              </div>
+              <div [formGroupName]="i" class="input-container">
+              </div>
+              <div class="row">
+                <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect" [formGroupName]="i">
+                  <label class="chooseLabel"><i class="fa-solid fa-user-tag"></i> {{lang.name}}</label>
+                  <input class="form-select forms chooseSelect detail" type="text" formControlName="name">
+                </div>
+                <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect"[formGroupName]="i" style="padding-right: 0px !important;">
+                  <label class="chooseLabel"><i class="fa-solid fa-user-tag"></i> {{lang.surname}}</label>
+                  <input class="form-select forms chooseSelect detail" type="text" formControlName="surname">
+                </div>
+                <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect"[formGroupName]="i" >
+                  <label class="chooseLabel"><i class="fa-solid fa-phone"></i> {{lang.phonenumber}}</label>
+                  <input class="form-select forms chooseSelect detail" type="number" formControlName="phoneNumber">
+                </div>
+                <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect"[formGroupName]="i" style="padding-right: 0px !important;">
+                  <label class="chooseLabel"><i class="fa-solid fa-tag"></i> {{lang.mission}}</label>
+                  <input class="form-select forms chooseSelect detail" type="text" formControlName="mission">
+                </div>
+                <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect" [formGroupName]="i">
+                  <label class="chooseLabel"><i class="fa-solid fa-location-dot"></i> {{lang.address}}</label>
+                  <input class="form-select forms chooseSelect detail" type="text" formControlName="address">
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+        <div class="btn-location">
+          <button class="button-37" (click)="workAccidentAdd()"><i class="fa-solid fa-circle-plus"></i> {{lang.addNewWorkAccident}}</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

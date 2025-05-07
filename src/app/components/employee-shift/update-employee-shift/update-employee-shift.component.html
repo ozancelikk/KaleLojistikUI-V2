@@ -1,0 +1,44 @@
+<div class="modal fade" id="updateEmployeeShiftModal" tabindex="-1" aria-labelledby="updateEmployeeShiftModalLabel" aria-hidden="true" *app="empShiftRole">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-6" id="updateEmployeeShiftModalLabel"><i class="fa-solid fa-user-plus"></i>
+            {{lang.updateEmployeeShift}}</h1>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="employeeShiftUpdateForm" *ngIf="employeeShiftUpdateForm">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect" >
+                    <label class="chooseLabel"><i class="fa-solid fa-user"></i> {{lang.employeeName}}</label>
+                    <select class="form-select chooseSelect" aria-label="Default select example"
+                      formControlName="employeeId" style="font: small-caption !important; ">
+                      <option value="" disabled selected>{{lang.chooseEmployee}}</option>
+                      <option *ngFor="let employee of employees" [value]="employee.id"> {{employee.name}} {{employee.surname}}
+                      </option>
+                    </select>
+                  </div>
+                  <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect modal-right" >
+                    <label class="chooseLabel"><i class="fa-solid fa-calendar-days"></i> {{lang.shiftName}}</label>
+                    <select class="form-select chooseSelect" aria-label="Default select example"
+                      formControlName="shiftId" style="font: small-caption !important; ">
+                      <option value="" disabled selected>{{lang.chooseShift}}</option>
+                      <option *ngFor="let shift of shifts" [value]="shift.id"> {{shift.name}}
+                      </option>
+                    </select>
+                  </div>
+                  <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect" >
+                    <label class="chooseLabel"><i class="fa-regular fa-calendar"></i>
+                      {{lang.shiftDate}}</label>
+                    <input type="date" class="modal-input addClass"  class="form-control" formControlName="shiftDate"
+                      style="margin-bottom: 0px !important; border: none; border-bottom: 1px solid black;">
+                  </div>
+            </div>
+          </form>
+          <div class="btn-location mt-4">
+            <button type="button" class="button-4" data-bs-dismiss="modal"><i class="fa-solid fa-circle-xmark"></i> {{lang.cancel}}</button>
+            <a (click)="updateEmployeeShift()" class="button-20" data-bs-dismiss="modal"><i class="fa-regular fa-pen-to-square"></i> {{lang.updateEmployeeShift}} </a>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>

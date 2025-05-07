@@ -1,0 +1,30 @@
+
+    <div class="modal fade" id="addMaterialModal" tabindex="-1" aria-labelledby="addMaterialModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-6" id="addMaterialModalLabel"><i class="fa-solid fa-circle-plus"></i> {{lang.addNewMaterial}}</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form [formGroup]="materialAddForm">
+                        <div class="mb-3">
+                            <label class="chooseLabel"><i class="fa-solid fa-tag"></i> {{lang.materialName}}</label>
+                            <input type="text" class="modal-input" class="form-control" formControlName="materialName">
+                          </div>
+                          <div class="mb-3">
+                            <label class="chooseLabel"><i class="fa-solid fa-recycle"></i> {{lang.materialUsage}}</label>
+                            <input type="text" class="modal-input"placeholder="{{lang.splitArticle}}" class="form-control" formControlName="materialUsage">
+                          </div>
+                          <div class="mb-3">
+                            <label class="chooseLabel"><i class="fa-solid fa-circle-exclamation"></i> {{lang.securityAlert}}</label>
+                            <input type="text" class="modal-input"placeholder="{{lang.splitArticle}}" class="form-control" formControlName="securityAlert">
+                          </div>
+                    </form>
+                    <div class="btn-location mt-5">
+                        <button class="button-37" (click)="addMaterialManagement()"data-bs-dismiss="modal"><i class="fa-solid fa-circle-plus"></i> {{lang.addNewMaterial}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

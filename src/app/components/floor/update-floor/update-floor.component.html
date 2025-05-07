@@ -1,0 +1,39 @@
+<div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true" *app="updateFloorRole">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="box-shadow: none !important;">
+        <h6 id="updateModalLabel"><i class="fa-regular fa-pen-to-square"></i> {{lang.updateFloor}}</h6>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="floorUpdateForm" *ngIf="floorUpdateForm">
+          <div class="mb-3">
+            <label class="chooseLabel"><i class="fa-solid fa-stairs icon-spacing icon-spacing"></i> {{lang.floorName}}</label>
+            <input type="text" class="modal-input" class="form-control" formControlName="floorName">
+          </div>
+          <div class="row">
+            <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect">
+              <label class="chooseLabel"> <i class="fa-solid fa-code-branch"></i> {{lang.branchName}}</label>
+              <select class="form-select chooseSelect" aria-label="Default select example" formControlName="branchId"
+              (change)="onBranchChange($event)" style="font: small-caption !important;">
+                <option value="" disabled selected>{{lang.chooseBranch}}</option>
+                <option *ngFor="let branch of branchs" [value]="branch.id"> {{branch.branchName}} </option>
+              </select>
+            </div>
+            <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect" style="padding-right: 0px !important;">
+              <label class="chooseLabel"><i class="fa-regular fa-building icon-spacing"></i> {{lang.blockName}}</label>
+              <select class="form-select chooseSelect" aria-label="Default select example" formControlName="blockId"
+                style="font: small-caption !important;">
+                <option value="" disabled selected>{{lang.chooseBlock}}</option>
+                <option *ngFor="let block of blocks" [value]="block.id"> {{block.blockName}} </option>
+              </select>
+            </div>
+          </div>
+        </form>
+        <div class="btn-location mt-5">
+          <button type="button" class="button-4" data-bs-dismiss="modal"><i class="fa-solid fa-circle-xmark"></i> {{lang.cancel}}</button>
+          <a (click)="updateFloor()" class="button-20" data-bs-dismiss="modal"><i class="fa-regular fa-pen-to-square"></i> {{lang.update}} </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

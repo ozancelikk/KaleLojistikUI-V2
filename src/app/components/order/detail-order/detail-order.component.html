@@ -1,0 +1,27 @@
+
+<div class="modal fade" id="orderMenuDetailsModal" tabindex="-1" aria-labelledby="orderMenuDetailsModalLabel"
+aria-hidden="true">
+<div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-6" id="orderMenuDetailsModalLabel"><i class="fa-solid fa-list-ol"></i> {{lang.menuDetail}}</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" *ngIf="order">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-xl-6 mb-3" *ngFor="let menu of order.menus;let i =index">
+                    <div class="title">
+                        <label class="chooseLabel"><i class="fa-solid fa-list-ol"></i> {{i+1}}. {{lang.menu}}</label>
+                    </div>
+                    <label class="chooseLabel"><i class="fa-solid fa-tags"></i> {{lang.menuName}}</label>
+                    <input class="form-select chooseSelect detail" [value]="menu.menuName" readonly>
+                    <label class="chooseLabel"><i class="fa-solid fa-dollar-sign"></i> {{lang.price}}</label>
+                    <input class="form-select chooseSelect detail" [value]="menu.orderPrice" readonly>
+                    <label class="chooseLabel"><i class="fa-solid fa-arrow-up-1-9"></i> {{lang.quantity}}</label>
+                    <input class="form-select chooseSelect detail" [value]="menu.quantity" readonly>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

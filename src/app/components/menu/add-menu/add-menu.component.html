@@ -1,0 +1,36 @@
+<div class="modal fade" id="menuAddModal" tabindex="-1" aria-labelledby="menuAddModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-6" id="menuAddModalLabel"><i class="fa-solid fa-circle-plus"></i> {{lang.addNewMenu}}</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="menuAddForm">    
+                    <div class="mb-3">
+                        <label class="chooseLabel"><i class="fa-solid fa-tags"></i> {{lang.productName}}</label>
+                        <input type="text" class="modal-input" class="form-control" formControlName="productName" >
+                    </div>    
+                    <div class="mb-3">
+                        <label class="chooseLabel"><i class="fa-solid fa-comment"></i> {{lang.productDescription}}</label>
+                        <input type="text" class="modal-input" class="form-control" formControlName="productDescription">
+                    </div>   
+                    <div class="mb-3">
+                        <label class="chooseLabel"><i class="fa-solid fa-hand-holding-dollar"></i> {{lang.price}}</label>
+                        <input type="number" class="modal-input" class="form-control" formControlName="price">
+                    </div>   
+                    <div class="col-lg-12 col-md-12 col-xl-12 custom-select-wrapper modalSelect">
+                        <label class="chooseLabel"><i class="fa-solid fa-utensils"></i> {{lang.foodCategoryName}}</label>
+                        <select class="form-select chooseSelect" aria-label="Default select example" formControlName="foodCategoryId" style="font: small-caption !important;">
+                          <option value="" disabled selected>{{lang.chooseFoodCategory}}</option>
+                          <option *ngFor="let category of foodCategories" [value]="category.id"> {{category.categoryName}} </option>
+                        </select>
+                      </div>           
+                </form>
+                <div class="btn-location mt-5">
+                    <button class="button-37" (click)="addMenu()" data-bs-dismiss="modal"><i class="fa-solid fa-circle-plus"></i> {{lang.addNewMenu}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

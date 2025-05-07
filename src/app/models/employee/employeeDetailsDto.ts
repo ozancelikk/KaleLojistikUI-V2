@@ -1,0 +1,24 @@
+export interface EmployeeDetailsDto{
+    id:string;
+    name:string;
+    surname:string;
+    email:string;
+    phoneNumber:string;
+    age:number;
+    departmentId:string;
+    title:string
+    imagePath:string
+    status:boolean;
+    dateOfStart:string
+    branchId:string;
+    bloodGroup:string
+    birthDay:string;
+    educationalStatus:string
+    lowerSize:string
+    upperSize:string
+    shoeSize:string
+    dateOfFinish:string
+    emergencyContactName:string
+    emergencyContactNumber:string
+    emergencyContactRelationship:string
+}

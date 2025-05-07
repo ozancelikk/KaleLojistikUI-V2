@@ -1,0 +1,44 @@
+<div class="modal fade" id="addDynamicReportModal" tabindex="-1" aria-labelledby="addDynamicReportModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-6" id="addDynamicReportModalLabel"><i class="fa-solid fa-file-circle-plus"></i> {{lang.addNewReport}}</h1>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="dynamicReportForm" *ngIf="dynamicReportForm">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-xl-6 mb-2 custom-select-wrapper modalSelect">
+                            <label class="chooseLabel"><i class="fa-solid fa-calendar-days"></i> {{lang.startingDate}}</label>
+                            <input type="datetime-local" class="modal-input addClass"  class="form-control" formControlName="reportFilterDate"
+                                style=" border:none; border-bottom: 1px solid;">
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-xl-6 mb-2 custom-select-wrapper modalSelect modal-right">
+                            <label class="chooseLabel"><i class="fa-solid fa-calendar-days"></i> {{lang.endDate}}</label>
+                            <input type="datetime-local" class="modal-input addClass" class="form-control" formControlName="reportFilterEndDate"
+                                style=" border:none; border-bottom: 1px solid;">
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-xl-6 mb-2 custom-select-wrapper modalSelect">
+                            <label class="chooseLabel"><i class="fa-solid fa-tag"></i> {{lang.reportName}}</label>
+                            <input type="text" [placeholder]="lang.reportName" class="modal-input addClass" class="form-control" formControlName="reportName">
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-xl-6 mb-2 custom-select-wrapper modalSelect">
+                            <label class="chooseLabel"><i class="fa-solid fa-tag"></i> {{lang.reportTitle}}</label>
+                            <input type="text" [placeholder]="lang.reportTitle" class="modal-input addClass" class="form-control" formControlName="titleName">
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect ">
+                            <label class="chooseLabel"><i class="fa-solid fa-location-dot"></i> {{lang.chooseDutyStation}}</label>
+                            <select class="form-select chooseSelect"  aria-label="Default select example" formControlName="entityType" style="margin-top: .3rem;">
+                              <option value="" disabled selected>{{lang.chooseEmployee}}</option>
+                              <option *ngFor="let li of list" [value]="li">{{li}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+                <div class="btn-location mt-5">
+                    <button class="button-37" *ngIf="!report" (click)="addDynamicReport()"><i class="fa-solid fa-file-circle-plus"></i> {{lang.addNewReport}}</button>
+                    <button class="button-37" style="opacity: 0.5;" *ngIf="report" disabled><i class="fa-solid fa-spinner"></i>{{lang.reportisbeingcreated}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

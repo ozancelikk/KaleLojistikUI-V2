@@ -1,0 +1,89 @@
+<div class="modal fade" id="additionalTaskUpdateModal" tabindex="-1" aria-labelledby="additionalTaskUpdateLabel"
+  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-6" id="additionalTaskUpdateLabel"><i class="fa-regular fa-pen-to-square"></i> {{lang.updateAdditionalTask}}</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" style=" padding: 3% !important;" *ngIf="additionalTaskUpdateForm">
+        <div class="accordion" id="accordionExample">
+           <div class="task-grp">
+            <button data-bs-toggle="modal" data-bs-target="#updateTaskAdd" style="margin-left: 11%; padding: 2%;" class="btn btn-sm add-btn-grp" type="button">
+              {{ lang.addNewDuty }} <i class="fa-solid fa-plus"></i>
+            </button>
+          </div> 
+          <form [formGroup]="additionalTaskUpdateForm">
+            <div class="accordion-item mb-1" *ngFor="let task of tasks.controls; let i = index" formArrayName="tasks">
+              <div [formGroupName]="i">
+              
+              <h2 class="accordion-header" id="heading{{ i }}">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                  [attr.data-bs-target]="'#collapse' + i" aria-expanded="false" [attr.aria-controls]="'collapse' + i">
+                  {{lang.taskName}}:
+                  <span>{{task.get("taskName").value}}</span>
+                </button>
+              </h2>
+              <div [id]="'collapse' + i" class="accordion-collapse collapse" [attr.aria-labelledby]="'heading' + i"
+                data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+             
+                      <div>
+                        <div class="mb-3">
+                          <label class="chooseLabel">{{lang.taskName}} </label>
+                          <input type="text" formControlName="taskName" #taskNameInput value="{{task.get('taskName').value}}">
+                        </div>
+                        <div class="mb-3">
+                          <label class="chooseLabel">{{lang.description}} </label>
+                          <input type="text" formControlName="taskDescription" #taskDescriptionInput value="{{task.get('taskDescription').value}}">
+                        </div>
+                        <div class="mb-3">
+                          <label class="chooseLabel">{{lang.departmentName}} </label>
+                          <input formControlName="departmentId" type="text" readonly #dateInput value="{{task.get('departmentId').value}}">
+                        </div>
+                      
+                       
+                    </div>
+                
+                  <div class="col-lg-6 col-md-12 col-xl-9 mt-3">
+                    <button class="button-4" (click)="deleteTask(i)"><i class="fa-solid fa-trash-can"></i> {{lang.deletedTask}}</button>
+                    <button class="button-4" (click)="updateTask(i)"><i class="fa-regular fa-pen-to-square"></i> {{lang.update}}</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+       
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="updateTaskAdd" tabindex="-1" aria-labelledby="updateTaskAddLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="updateTaskAddLabel">{{lang.addNewDuty}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="taskForm">
+          <div class="mb-3">
+            <label for="taskName" class="form-label">{{lang.taskName}}</label>
+            <input type="text" class="form-control" id="taskName" formControlName="taskName">
+          </div>
+          <div class="mb-3">
+            <label for="taskDescription" class="form-label">{{lang.dutyDescription}}</label>
+            <textarea class="form-control" id="taskDescription" formControlName="taskDescription"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{lang.close}}</button>
+        <button type="button" class="btn btn-primary" (click)="addTask()">{{lang.addNewDuty}}</button>
+      </div>
+    </div>
+  </div>
+</div>

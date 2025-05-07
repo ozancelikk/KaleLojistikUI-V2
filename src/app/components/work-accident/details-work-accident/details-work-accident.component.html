@@ -1,0 +1,78 @@
+
+<div class="modal fade" id="detailWorkAccidentModal" tabindex="-1" aria-labelledby="detailWorkAccidentModalLabel" aria-hidden="true" >
+  <div class="modal-dialog" >
+  <div class="modal-content" >
+    <div class="modal-header">
+      <h1 class="modal-title fs-6" id="detailWorkAccidentModalLabel"><i class="fa-solid fa-circle-info"></i> {{lang.workAccident}} {{lang.details}}</h1>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
+    </div>
+    <div class="modal-body" *ngIf="workAccident">
+
+        <div class="mb-3 ">
+            <label class="chooseLabel"><i class="fa-solid fa-comment"></i> {{lang.description}}</label>
+            <input type="text" class="modal-input detail" [value]="workAccident.description" readonly>
+            <span class="tooltip-text">{{workAccident.description}}</span>
+        </div>
+        <div class="mb-3">
+            <label class="chooseLabel"><i class="fa-solid fa-location-dot"></i> {{lang.address}}</label>
+            <input type="text" class="modal-input detail" [value]="workAccident.address" readonly>
+            <span class="tooltip-text">{{workAccident.address}}</span>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect">
+                <label class="chooseLabel"><i class="fa-solid fa-person"></i> {{lang.fatherName}}</label>
+                <input class="form-select chooseSelect detail forms forms" [value]="workAccident.fatherName" readonly>
+            </div>
+            <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect" style="padding-right: 0px !important;">
+                <label class="chooseLabel"><i class="fa-solid fa-arrow-down-9-1"></i> {{lang.insuranceRegistrationNumber}}</label>
+                <input class="form-select chooseSelect detail forms" [value]="workAccident.insuranceRegistrationNumber" readonly>
+            </div>
+            <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect">
+                <label class="chooseLabel"><i class="fa-solid fa-id-card"></i> {{lang.identificationNumber}}</label>
+                <input class="form-select chooseSelect detail forms" [value]="workAccident.identificationNumber" readonly>
+            </div>
+            <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect" style="padding-right: 0px !important;">
+                <label class="chooseLabel"><i class="fa-solid fa-cake-candles"></i> {{lang.birthDay}}</label>
+                <input class="form-select chooseSelect detail forms" [value]="workAccident.birthDay" readonly>
+            </div>
+            <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect">
+                <label class="chooseLabel"><i class="fa-solid fa-map-location-dot"></i> {{lang.placeOfBirth}}</label>
+                <input class="form-select chooseSelect detail forms" [value]="workAccident.placeOfBirth" readonly>
+            </div>
+            <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect" style="padding-right: 0px !important;">
+                <label class="chooseLabel"><i class="fa-solid fa-tags"></i> {{lang.mission}}</label>
+                <input class="form-select chooseSelect detail forms" [value]="workAccident.mission" readonly>
+            </div>
+            <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect">
+                <label class="chooseLabel"><i class="fa-solid fa-calendar-days"></i> {{lang.dateOfStart}}</label>
+                <input class="form-select chooseSelect detail forms" [value]="workAccident.dateOfStart" readonly>
+            </div>
+            <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect" style="padding-right: 0px !important;">
+                <label class="chooseLabel"><i class="fa-solid fa-person-falling-burst"></i> {{lang.accidentDate}}</label>
+                <input class="form-select chooseSelect detail forms" [value]="workAccident.accidentDate" readonly>
+            </div>
+            <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect">
+                <label class="chooseLabel"><i class="fa-solid fa-users"></i> {{lang.numberOfEmployees}}</label>
+                <input class="form-select chooseSelect detail forms" [value]="workAccident.numberOfEmployees" readonly>
+            </div>
+            <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect" style="padding-right: 0px !important;">
+                <label class="chooseLabel"><i class="fa-solid fa-calendar-day"></i> {{lang.startDateToday}}</label>
+                <input class="form-select chooseSelect detail forms" [value]="workAccident.workingStartDate" readonly>
+            </div>
+            <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect">
+                <label class="chooseLabel"><i class="fa-solid fa-phone"></i> {{lang.phonenumber}}</label>
+                <input class="form-select chooseSelect detail forms" [value]="workAccident.phoneNumber" readonly>
+            </div>
+            <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect"style="padding-right: 0px !important;" *ngIf="workAccident.lossOfLimb">
+                <label class="chooseLabel"><i class="fa-solid fa-circle-check"></i> {{lang.lossOfLimb}}</label>
+                <input class="form-select chooseSelect detail forms" [value]="lang.thereIs" readonly>
+            </div>
+            <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect"style="padding-right: 0px !important;"*ngIf="!workAccident.lossOfLimb">
+                <label class="chooseLabel"><i class="fa-solid fa-circle-xmark"></i> {{lang.lossOfLimb}}</label>
+                <input class="form-select chooseSelect detail forms" [value]="lang.not" readonly>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

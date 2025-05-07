@@ -1,0 +1,51 @@
+<div class="modal fade" id="addDynamicEmployeeReportModal" tabindex="-1" aria-labelledby="addDynamicEmployeeReportModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-6" id="addDynamicEmployeeReportModalLabel"><i class="fa-solid fa-file-circle-plus"></i>rapor</h1>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="dynamicReportEmployeeForm" *ngIf="dynamicReportEmployeeForm">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-xl-6 mb-2 custom-select-wrapper modalSelect">
+                            <label class="chooseLabel"><i class="fa-solid fa-calendar-days"></i> {{lang.startingDate}}</label>
+                            <input type="datetime-local" class="modal-input addClass"  class="form-control" formControlName="reportFilterDate"
+                                style=" border:none; border-bottom: 1px solid;">
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-xl-6 mb-2 custom-select-wrapper modalSelect modal-right">
+                            <label class="chooseLabel"><i class="fa-solid fa-calendar-days"></i> {{lang.endDate}}</label>
+                            <input type="datetime-local" class="modal-input addClass" class="form-control" formControlName="reportFilterEndDate"
+                                style=" border:none; border-bottom: 1px solid;">
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-xl-6 mb-2 custom-select-wrapper modalSelect">
+                            <label class="chooseLabel"><i class="fa-solid fa-tag"></i> {{lang.reportName}}</label>
+                            <input type="text" class="modal-input addClass" class="form-control" formControlName="reportName">
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-xl-6 mb-2 custom-select-wrapper modalSelect">
+                            <label class="chooseLabel"><i class="fa-solid fa-tag"></i> {{lang.reportTitle}}</label>
+                            <input type="text"[placeholder]="lang.reportTitle" class="modal-input addClass" class="form-control" formControlName="titleName">
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect ">
+                            <label class="chooseLabel"><i class="fa-solid fa-location-dot"></i> {{lang.chooseDutyStation}}</label>
+                            <select class="form-select chooseSelect"  aria-label="Default select example" formControlName="entityType" style="margin-top: .3rem;">
+                              <option value="" disabled selected>{{lang.chooseSelect}}</option>
+                              <option *ngFor="let li of list" [value]="li">{{li}}</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect ">
+                            <label class="chooseLabel"><i class="fa-solid fa-users"></i> {{lang.employeeName}}</label>
+                            <select class="form-select chooseSelect"  aria-label="Default select example"  style="margin-top: .3rem;"
+                            (change)="changeEmployee($event)">
+                              <option value="" disabled selected>{{lang.chooseEmployee}}</option>
+                              <option *ngFor="let employee of employees" [value]="employee.id">{{employee.name}} {{employee.surname}} </option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+                <div class="btn-location mt-5">
+                    <button class="button-37" (click)="addDynamicReportEmployee()"><i class="fa-solid fa-file-circle-plus"></i> {{lang.addNewReport}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

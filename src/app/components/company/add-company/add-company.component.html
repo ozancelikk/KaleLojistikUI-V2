@@ -1,0 +1,23 @@
+<div class="modal fade" id="addCompanyModal" tabindex="-1" aria-labelledby="addCompanyModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-6" id="addCompanyModalLabel"><i class="fa-solid fa-building"></i> {{lang.addnewcompany}}</h1>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="companyForm" *ngIf="companyForm">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-xl-12 mb-2">
+                            <label class="chooseLabel"><i class="fa-solid fa-building"></i>{{lang.companyName}}</label>
+                            <input type="text" class="modal-input addClass" class="form-control" formControlName="companyName"
+                                style="margin-bottom: 0px !important;">
+                        </div>
+                    </div>
+                </form>
+                <div class="btn-location mt-5">
+                    <button class="button-37" (click)="addCompany()" data-bs-dismiss="modal"><i class="fa-solid fa-user-plus"></i> {{lang.addnewcompany}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

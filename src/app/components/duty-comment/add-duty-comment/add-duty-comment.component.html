@@ -1,0 +1,92 @@
+<body>
+  <div class="container-login d-flex align-items-center justify-content-center vh-100">
+    <div class="text-center">
+      <div class="login-title ">
+        <img src="/assets/img/logo-White.png" width="250" alt="" srcset="">
+        <p style="font-size: large;" id="login-description">{{lang.newGenerationCleaning}}</p>
+      </div>
+      <div class="languages">
+        <a (click)="changeLanguage('tr')" class="language">
+          <img src="/assets/img/turkey.png" alt="">
+        </a>
+        <a (click)="changeLanguage('en')" class="language" style="margin-left: 1rem;">
+          <img src="/assets/img/united-kingdom.png" alt="">
+        </a>
+        <a (click)="changeLanguage('de')" class="language" style="margin-left: 1rem;">
+          <img src="/assets/img/germany.png" alt="">
+        </a>
+        <a (click)="changeLanguage('fr')" class="language" style="margin-left: 1rem;">
+          <img src="/assets/img/france.png" alt="">
+        </a>
+      </div>
+      <div class="button-group mb-3 mt-5">
+        <button class="btn btn-primary" (click)="showForm('dutyComment')">{{lang.dutyComment}}</button>
+        <button class="btn btn-secondary" (click)="showForm('technicalError')">{{lang.technicalError}}</button>
+      </div>
+      <div *ngIf="currentForm === 'dutyComment'">
+        <form [formGroup]="dutyCommentForm">
+          <input type="text" formControlName="name" class="form-control mb-2" placeholder="{{lang.name}}"
+            required autofocus>
+          <input type="text" class="form-control mb-3" placeholder="{{lang.surname}}" required formControlName="surname">
+          <input type="text" class="form-control mb-3" placeholder="{{lang.email}}" required formControlName="email">
+          <input type="text" class="form-control mb-3" placeholder="{{lang.content}}" required formControlName="content">
+          <div class="rating-wrapper">
+        
+            <!-- star 5 -->
+            <input type="radio" id="5-star-rating" name="star-rating" value="5" (click)="getRate(5)">
+            <label for="5-star-rating" class="star-rating">
+              <i class="fas fa-star d-inline-block"></i>
+            </label>
+            
+             <!-- star 4 -->
+            <input type="radio" id="4-star-rating" name="star-rating" value="4"(click)="getRate(4)">
+            <label for="4-star-rating" class="star-rating star">
+              <i class="fas fa-star d-inline-block"></i>
+            </label>
+            
+             <!-- star 3 -->
+            <input type="radio" id="3-star-rating" name="star-rating" value="3"(click)="getRate(3)">
+            <label for="3-star-rating" class="star-rating star">
+              <i class="fas fa-star d-inline-block"></i>
+            </label>
+            
+            <!-- star 2 -->
+            <input type="radio" id="2-star-rating" name="star-rating" value="2"(click)="getRate(2)">
+            <label for="2-star-rating" class="star-rating star">
+              <i class="fas fa-star d-inline-block"></i>
+            </label>
+            
+            <!-- star 1 -->
+            <input type="radio" id="1-star-rating" name="star-rating" value="1"(click)="getRate(1)">
+            <label for="1-star-rating" class="star-rating star">
+              <i class="fas fa-star d-inline-block"></i>
+            </label>
+            
+           </div>
+          <div class="button-group">
+            <button class="button-37" type="submit" (click)="addMethods()">{{lang.submit}}</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Form 2 -->
+      <div *ngIf="currentForm === 'technicalError'">
+        <form [formGroup]="technicalErrorForm">
+          <input type="text" formControlName="errorTitle" class="form-control mb-2" placeholder="{{lang.errorTitle}}"required autofocus>
+          <input type="text" class="form-control mb-2" placeholder="{{lang.errorDescription}}" required formControlName="errorDescription">
+          <div class="form-control mb-3">
+            <select class="form-select chooseSelect" aria-label="Default select example" formControlName="employeeId"style="font: small-caption !important; border: none !important;">
+              <option value="" disabled selected>{{lang.chooseDepartment}}</option>
+              <option *ngFor="let dep of departments" [value]="dep.id"> {{dep.departmentName}}
+              </option>
+            </select>
+          </div>
+          <div class="button-group">
+            <button class="button-37" type="submit" (click)="addMethods()">{{lang.submit}}</button>
+          </div>
+        </form>
+      </div>
+      <p class="mt-5 mb-3 text-muted">&copy; TTD V1.3 </p>
+    </div>
+  </div>
+</body>

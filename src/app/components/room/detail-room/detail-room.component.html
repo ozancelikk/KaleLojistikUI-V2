@@ -1,0 +1,51 @@
+<div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-6" id="detailModalLabel"> <i class="fa-solid fa-circle-info"></i>
+                    {{lang.details}}</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" *ngIf="roomDetails">
+                <div class="mb-3">
+                    <label class="chooseLabel"><i class="fa-solid fa-tag"></i>{{lang.roomName}}</label>
+                    <input type="text" class="modal-input detail"  [value]="roomDetails.roomName" readonly>
+                </div>
+                <div class="mb-3">
+                    <label class="chooseLabel"><i class="fa-solid fa-arrow-down-1-9"></i> {{lang.roomNumber}}</label>
+                    <input type="text" class="modal-input detail" [value]="roomDetails.roomNumber" readonly>
+                </div>
+                <div class="mb-3">
+                    <label class="chooseLabel"><i class="fa-solid fa-comment"></i>{{lang.roomDescription}}</label>
+                    <input type="text" class="modal-input detail" [value]="roomDetails.roomDescription" readonly>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect modalSelect">
+                        <label class="chooseLabel"><i class="fa-solid fa-code-branch"></i> {{lang.branchName}}</label>
+                        <input class="form-select chooseSelect detail" [value]="roomDetails.branchName" readonly>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect "style="padding-right: 0px !important;">
+                        <label class="chooseLabel"><i class="fa-regular fa-building icon-spacing"></i> {{lang.blockName}}</label>
+                        <input class="form-select chooseSelect detail" [value]="roomDetails.blockName" readonly>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect">
+                        <label class="chooseLabel"><i class="fa-solid fa-stairs icon-spacing icon-spacing"></i> {{lang.floorName}}</label>
+                        <input class="form-select chooseSelect detail"  [value]="roomDetails.floorName" readonly>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect"style="padding-right: 0px !important;">
+                        <label class="chooseLabel"><i class="fa-solid fa-door-open icon-spacing"></i> {{lang.hallwayName}}</label>
+                        <input class="form-select chooseSelect detail"  [value]="roomDetails.hallwayName" readonly>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect" *ngIf="roomDetails.status">
+                        <label class="chooseLabel"><i class="fa-solid fa-circle-check"></i> {{lang.status}}</label>
+                        <input class="form-select chooseSelect detail"  [value]="lang.active" readonly>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect" *ngIf="!roomDetails.status">
+                        <label class="chooseLabel"><i class="fa-solid fa-circle-xmark"></i> {{lang.status}}</label>
+                        <input class="form-select chooseSelect detail"  [value]="lang.passive" readonly>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,36 @@
+<div class="modal fade" id="updateMailSenderConfigModal" tabindex="-1" aria-labelledby="updateMailSenderConfigModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-6" id="updateMailSenderConfigModalLabel"><i class="fa-regular fa-pen-to-square"></i> {{lang.updateEmailSender}}</h1>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="mailSenderForm" *ngIf="mailSenderForm">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-xl-12 mb-2" style="padding-left:0px !important">
+                            <label class="chooseLabel"><i class="fa-solid fa-envelope-circle-check"></i> {{lang.emailSender}}</label>
+                            <input type="text" class="modal-input addClass" class="form-control" formControlName="sendEmail"
+                                style="margin-bottom: 0px !important;">
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-xl-12 mb-2" style="padding-left:0px !important">
+                            <label class="chooseLabel"><i class="fa-solid fa-user-tag"></i> {{lang.name}} {{lang.surname}}</label>
+                            <input type="text" class="modal-input addClass" class="form-control" formControlName="nameAndSurname"
+                                style="margin-bottom: 0px !important;">
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-xl-12 custom-select-wrapper modalSelect">
+                            <label class="chooseLabel"><i class="fa-solid fa-house icon-spacing icon-spacing"></i>{{lang.departmentName}}</label>
+                            <select class="form-select chooseSelect" aria-label="Default select example" formControlName="departmentId"style="font: small-caption !important;">
+                              <option value="" disabled selected>{{lang.chooseDepartment}}</option>
+                              <option *ngFor="let department of departments" [value]="department.id">{{department.departmentName}}</option>
+                            </select>
+                          </div>
+                    </div>
+                </form>
+                <div class="btn-location mt-4">
+                    <button type="button" class="button-4" ><i class="fa-solid fa-circle-xmark"></i> {{lang.cancel}}</button>
+                    <a (click)="updateMailSenderConfig()" class="button-20" ><i class="fa-regular fa-pen-to-square"></i> {{lang.updateEmailSender}} </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

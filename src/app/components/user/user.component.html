@@ -1,0 +1,16 @@
+<div class="container-fluid" style="padding-left: 20px;padding-right: 20px;">
+    <app-navbar-user (navbarEvent)="getAllUser()"></app-navbar-user>
+    <ag-grid-angular id="datatable" style="width: 100%;height: 83vh;" class="ag-theme-alpine" [columnDefs]="columnDefs"
+        [defaultColDef]="defaultColDef" [rowSelection]="'multiple'" [enableCellTextSelection]="true"
+        [cacheBlockSize]="cacheBlockSize" [cacheOverflowSize]="cacheOverflowSize"
+        [maxConcurrentDatasourceRequests]="maxConcurrentDatasourceRequests"
+        [infiniteInitialRowCount]="infiniteInitialRowCount" [enableBrowserTooltips]="true"
+        [overlayNoRowsTemplate]="noRowsTemplate" [maxBlocksInCache]="maxBlocksInCache" [rowData]="rowData"
+        [gridOptions]="gridOptions" (gridReady)="onGridReady($event)"
+        [suppressScrollOnNewData]="true"></ag-grid-angular>
+</div>
+<app-add-user (userEvent)="getAllUser()"></app-add-user>
+<app-update-user [userDetail]="user" (userEvent)="getAllUser()"></app-update-user>
+<app-change-password (changePasswordEvent)="getAllUser()" [changePasswordDetail]="user"></app-change-password>
+<app-user-image (imageEvent)="getAllUser()" [userImageDetail]="userDetailImage"></app-user-image>
+

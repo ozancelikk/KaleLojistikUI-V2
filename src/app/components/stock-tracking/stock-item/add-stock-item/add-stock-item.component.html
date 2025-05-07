@@ -1,0 +1,127 @@
+<div class="modal fade" id="addStockItemModal" tabindex="-1" aria-labelledby="addStockItemModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-6" id="addStockItemModalLabel"><i class="fa-solid fa-circle-plus"></i>
+                    {{lang.addNewStockItem}}
+                </h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="stockItemForm">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect ">
+                            <label class="chooseLabel"><i class="fa-solid fa-box"></i>
+                                {{lang.productName}}</label>
+                            <select class="form-select chooseSelect" aria-label="Default select example"style="font: small-caption !important;"
+                                formControlName="productId">
+                                <option value="" disabled selected>{{lang.chooseProduct}}</option>
+                                <option *ngFor="let product of products" [value]="product.id"> {{product.name}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect"
+                            style="font-size: 11px;">
+                            <label class="chooseLabel"><i class="fa-solid fa-arrow-up-1-9"></i> {{lang.quantity}}</label>
+                            <input type="number" class="modal-input" class="form-control" formControlName="quantity">
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect"
+                            style="font-size: 11px;">
+                            <label class="chooseLabel"><i class="fa-solid fa-calendar-days"></i> {{lang.entryDate}}</label>
+                            <input type="datetime-local" style="border: 0px; border-bottom: 1px solid;" class="modal-input" class="form-control" formControlName="entryDate">
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect"
+                            style="font-size: 11px;">
+                            <label class="chooseLabel"><i class="fa-solid fa-comment"></i>{{lang.description}}</label>
+                            <input type="text" class="modal-input" class="form-control" style="margin-top: 3px;" formControlName="description">
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect">
+                            <label class="chooseLabel"><i class="fa-solid fa-user"></i> {{lang.employeeName}}</label>
+                            <select class="form-select chooseSelect" aria-label="Default select example"
+                                formControlName="employeeId">
+                                <option value="" disabled selected>{{lang.chooseEmployee}}</option>
+                                <option *ngFor="let employee of employees" [value]="employee.id">{{employee.name +
+                                    " " +
+                                    employee.surname}}</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect ">
+                            <label class="chooseLabel"><i class="fa-solid fa-door-open icon-spacing"></i>{{lang.departmentName}}</label>
+                            <select class="form-select chooseSelect" #hallwaySelect aria-label="Default select example"formControlName="departmentId"
+                                style="font: small-caption !important;">
+                                <option value="" disabled selected>{{lang.chooseHallway}}</option>
+                                <option *ngFor="let department of departments" [value]="department.id"> {{department.departmentName}}
+                                </option>
+                            </select>
+                        </div>
+
+                        <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect ">
+                            <label class="chooseLabel"><i class="fa-solid fa-code-branch"></i>
+                                {{lang.branchName}}</label>
+                            <select class="form-select chooseSelect" #branchSelect aria-label="Default select example"
+                                (change)="onBranchChange($event)" style="font: small-caption !important;">
+                                <option value="" disabled selected>{{lang.chooseBranch}}</option>
+                                <option *ngFor="let branch of branchs" [value]="branch.id"> {{branch.branchName}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect ">
+                            <label class="chooseLabel"><i class="fa-regular fa-building"></i> {{lang.blockName}}</label>
+                            <select class="form-select chooseSelect" #blockSelect aria-label="Default select example"(change)="onBlockChange($event)"
+                                style="font: small-caption !important;">
+                                <option value="" disabled selected>{{lang.chooseBlock}}</option>
+                                <option *ngFor="let block of blocks" [value]="block.id"> {{block.blockName}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect ">
+                            <label class="chooseLabel"><i class="fa-solid fa-stairs icon-spacing icon-spacing"></i>{{lang.floorName}}</label>
+                            <select class="form-select chooseSelect" #floorSelect aria-label="Default select example"(change)="onFloorChange($event)"
+                                style="font: small-caption !important;">
+                                <option value="" disabled selected>{{lang.chooseFloor}}</option>
+                                <option *ngFor="let floor of floors" [value]="floor.id"> {{floor.floorName}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect ">
+                            <label class="chooseLabel"><i class="fa-solid fa-door-open icon-spacing"></i>{{lang.hallwayName}}</label>
+                            <select class="form-select chooseSelect" #hallwaySelect aria-label="Default select example"(change)="onHallwayChange($event)"
+                                style="font: small-caption !important;">
+                                <option value="" disabled selected>{{lang.chooseHallway}}</option>
+                                <option *ngFor="let hallway of hallways" [value]="hallway.id"> {{hallway.hallwayName}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect ">
+                            <label class="chooseLabel"><i class="fa-solid fa-house icon-spacing icon-spacing"></i>
+                                {{lang.roomName}}</label>
+                            <select class="form-select chooseSelect" aria-label="Default select example"
+                                formControlName="roomId" style="font: small-caption !important;">
+                                <option value="" disabled selected>{{lang.chooseRoom}}</option>
+                                <option *ngFor="let room of rooms" [value]="room.id"> {{room.roomName}}
+                                </option>
+                            </select>
+                            <button class="btn btn-sm" type="button" (click)="addRoom()"><i class="fa-solid fa-circle-plus"></i> {{lang.addNewRoom}}
+                            </button>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-xl-6 mb-4" *ngFor="let emp of roomList;let i=index">
+                            <div class="task-number">
+                                <span><button class="btn" style="font-size: large;font: bold;" type="button"
+                                        (click)="removeRoom(i)">
+                                        <div class="icon">-</div>
+                                    </button></span>
+                            </div>
+                            <label class="chooseLabel"><i class="fa-solid fa-user"></i> {{emp.roomName}} </label>
+                        </div>
+                    </div>
+                </form>
+                <div class="btn-location mt-4">
+                    <button class="button-37" (click)="addStockItem()" ><i
+                            class="fa-solid fa-circle-plus"></i>
+                        {{lang.addNewStockItem}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

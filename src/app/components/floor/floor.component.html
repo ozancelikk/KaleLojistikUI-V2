@@ -1,0 +1,73 @@
+
+<app-update-floor  [floorDetail]="floor" (floorEvent)="getAllFloor()" (floorCountEvent)="getAllWithCounts()" ></app-update-floor>
+<div class="container" style="max-width: 100% !important ">
+    <div class="row" *ngIf="floors?.length>0">
+      
+  
+      <div class="col-xl-4 card-screen-medium"
+      *ngFor="let floor of floors|branchFilter:filterText:'floorName'| paginate: { itemsPerPage: getPaginationSize(), currentPage: page,totalItems: floors?.length, id: 'first'}"
+      >
+        <div class="card ">
+          <div class="row no-gutters">
+            <div class="col-4 left-section">
+              <h6 class="card-title text-white">{{lang.details}}</h6>
+              <div class="card-body text-start">
+                  <ul class="ul-group" *ngFor="let floorCounts of floorCounts" style="padding-left: 0px;">
+                    <div  *ngIf="floorCounts.id == floor.id">
+                      <li>
+                          <p>{{ lang.hallwayCount }}: <span>{{ floorCounts.hallwayCount }}</span></p>
+                      </li>
+                      <li>
+                        <p>{{ lang.roomCount }} : <span>{{ floorCounts.roomCount }}</span></p>
+                      </li>
+
+                    </div>
+                  </ul>
+
+              </div>
+            </div>
+            <div class="col-8 right-section">
+              <div class="top-section">
+                <h6 class="card-title">
+                  <i class="fa-solid fa-stairs icon-spacing icon-spacing"></i> {{ floor.floorName }}
+                </h6>
+                <div class="card-title-setting-btn">
+                  <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i class="fa-solid fa-gear"></i>
+                    </button>
+                    <ul class="dropdown-menu">
+                      
+                      <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#updateModal" (click)="getByFloor(floor.id)"><i class="fa-regular fa-pen-to-square"></i> {{lang.update}}</a></li>
+                      <li><a class="dropdown-item" (click)="onDeleteFloorId(floor.id)"> <i class="fa-regular fa-trash-can"></i> {{lang.delete}}</a></li> 
+                      <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#detailModal" (click)="getDetailByFloorId(floor.id)"> <i class="fa-solid fa-info"></i> {{lang.details}}</a></li> 
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="echarts-size">
+                <app-floor-charts [floorControls]="dutiesCountByBlock" [floorInfo]="dutiesCountByBlock" [floorId]="floor.id"> </app-floor-charts>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row" *ngIf="floors?.length==0">
+      <div class="col-xl-12">
+        <div class="card">
+          <div class="card-body">
+            <h6 class="card-title">{{lang.noDataFound}}</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <pagination-controls nextLabel="İleri" previousLabel="Geri" id="pagination" class="pagination"
+  (pageChange)="page=$event" id="first"> </pagination-controls>
+  </div>
+
+  <app-add-floor (floorEvent)="getAllFloor()" (floorCountEvent)="getAllWithCounts()"></app-add-floor>
+  <app-detail-floor [floorDetail]="floor"></app-detail-floor>
+

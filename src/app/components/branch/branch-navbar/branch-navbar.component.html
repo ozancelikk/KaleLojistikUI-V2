@@ -1,0 +1,32 @@
+<div class="nav-btn-group ttd-btn-grp">
+    <div class="button-container" *app="addBranchRole">
+        <button data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-sm add-btn-grp" > <i class="fa-solid fa-code-branch"></i>  {{lang.addNewBranch}} </button>
+    </div>
+    <div class="button-container" *app="getallDepartmentRole" >
+        <button data-bs-toggle="modal" data-bs-target="#companyModal" class="btn btn-sm add-btn-grp" > <i class="fa-solid fa-building"></i>  {{lang.companies}} </button>
+    </div>
+    
+    <div class="button-container">
+        <div class="dropdown top-bar-dropdown">
+            <button class="btn btn-sm add-btn-grp dropdown-toggle navbar-button-bottom" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                {{lang.numberofData}}> {{ selectedItemsPerPage }}
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <li *ngFor="let option of itemsPerPageOptions">
+                    <button class="dropdown-item btn" type="button" (click)="onItemsPerPageChange(option)">
+                        {{ option }}
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="search-group">
+        <div class="search-container">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input style="border-bottom:none;padding: 5px 5px;" type="text" class="form-control" [placeholder]="lang.search" [(ngModel)]="filterText" id="filterText"> 
+        </div>
+    </div>
+</div>
+<app-branch [filterText]="filterText"></app-branch>
+<app-company></app-company>

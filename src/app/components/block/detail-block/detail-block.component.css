@@ -1,0 +1,7 @@
+.modal-input{
+    width: 100% !important;
+    border-bottom: 0.1px solid black;
+}
+.detail:focus{
+    outline: none !important;
+}

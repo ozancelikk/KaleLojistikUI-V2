@@ -1,0 +1,47 @@
+.tooltip-text {
+    visibility: hidden;
+    width: 200px;
+    background-color: #555; 
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0; 
+    position: absolute;
+    z-index: 1;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -100px; 
+    opacity: 0;
+    transition: opacity 0.6s;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); 
+}
+
+.tooltip-text::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent; 
+}
+
+.modal-input:hover + .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+.modalSelect{
+    padding-left: 0px !important;
+}
+.chooseLabel{
+    font-weight: bold !important;
+}
+.chooseSelect{
+    border: none !important;
+    border-bottom:1px solid black !important ;
+}
+.detail:focus{
+    box-shadow: none !important;
+}

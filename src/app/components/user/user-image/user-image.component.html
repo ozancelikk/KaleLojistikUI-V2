@@ -1,0 +1,21 @@
+<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imgModalLabel" aria-hidden="true">
+  <div class="modal-dialog" id="modal-image">
+    <div class="modal-content">
+      <div class="modal-header" style="box-shadow: none !important;" *ngIf="userDetailsDto">
+        <img class="sidebar-icon" [src]="getImagePath()" width="200px" height="200px">
+        {{userDetailsDto.name}} {{userDetailsDto.surname}}
+      </div>
+      <div class="modal-footer">
+        <label class="labels" for="form3Example4" style="font-size: 10pt;">{{lang.changeProfile}}</label>
+        <input (change)="onChange($event)" type="file" id="form3Example3" class="form-control"
+          accept="image/png, image/jpeg, image/gif" />
+      </div>
+      <div class="btn-location mt-4 mb-2" style="margin-right: 1rem;">
+        <button type="button" class="button-4" data-bs-dismiss="modal"><i class="fa-solid fa-circle-xmark"></i>
+          {{lang.cancel}}</button>
+        <a (click)="updateImage()" class="button-20" data-bs-dismiss="modal"><i class="fa-regular fa-pen-to-square"></i>
+          {{lang.update}} </a>
+      </div>
+    </div>
+  </div>
+</div>

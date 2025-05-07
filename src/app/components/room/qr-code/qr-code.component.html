@@ -1,0 +1,21 @@
+<div class="modal fade" id="qrCodeModal" tabindex="-1" aria-labelledby="qrCodeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-6" id="qrCodeModalLabel"><i class="fa-solid fa-qrcode"></i>{{lang.qrCodeDetails}}</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" *ngIf="room">
+                <div class="d-flex justify-content-center" style="box-shadow: none !important;" *ngIf="room">
+                    <span style="font-weight: bold;">{{lang.roomName}}: {{room.roomName}}</span>
+                </div>
+                <div class="d-flex justify-content-center" style="box-shadow: none !important;" *ngIf="room">
+                    <img class="sidebar-icon" [src]="getImagePath()" width="400px" height="400px">
+                </div>
+                <div class="btn-location mt-5">
+                    <button class="button-37" (click)="downloadQrCode()" data-bs-dismiss="modal"><i class="fa-solid fa-download"></i> {{lang.qrCodeDownload}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

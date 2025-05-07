@@ -1,0 +1,32 @@
+<body>
+    <div class="container d-flex align-items-center vh-100" style="margin-left: auto !important;">
+        <div class="text-center">
+            <div>
+            </div>
+            <div class="login-title">
+                <img src="/assets/img/logo-White.png" style="margin-bottom: 2rem;" width="250" alt="" srcset="">
+                <p id="login-description">{{ lang.newGenerationCleaning }}</p>
+            </div>
+            <div class="languages">
+                <a (click)="changeLanguage('tr')" class="language">
+                  <img src="/assets/img/turkey.png" alt="">
+                </a>
+                <a (click)="changeLanguage('en')" class="language" style="margin-left: 1rem;">
+                  <img src="/assets/img/united-kingdom.png" alt="">
+                </a>
+                <a (click)="changeLanguage('de')" class="language" style="margin-left: 1rem;">
+                  <img src="/assets/img/germany.png" alt="">
+                </a>
+                <a (click)="changeLanguage('fr')" class="language" style="margin-left: 1rem;">
+                  <img src="/assets/img/france.png" alt="">
+              </a>
+              </div>
+            <input type="text" id="inputPassword" class="form-control mb-2" [placeholder]="countdownTimeFormatted" required (change)="onChange($event)">
+            <div class="button-group">
+                <button class="button-37" type="submit" (click)="checkKey()">{{ lang.send }}</button>
+                <button class="button-37" type="button" (click)="redirectToEmailPost()" [disabled]="!countdownExpired" [ngClass]="{'disabled-button': !countdownExpired}">{{lang.resendCode}}</button>
+            </div> 
+            <p class="mt-5 mb-3 text-muted">&copy; TTD </p>
+        </div>
+    </div>
+</body> 

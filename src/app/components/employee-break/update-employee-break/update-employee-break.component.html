@@ -1,0 +1,56 @@
+<div class="modal fade" id="employeeBreakUpdateModal" tabindex="-1" aria-labelledby="employeeBreakUpdateModalLabel" aria-hidden="true" *app="updateEmpBreakRole">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-6" id="employeeBreakUpdateModalLabel"><i class="fa-regular fa-pen-to-square"></i>
+                    {{lang.updateemployeebreak}}</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="employeeBreakUpdateForm" *ngIf="employeeBreakUpdateForm">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-xl-6 modalSelect custom-select-wrapper" style="margin-top: 0.4rem;">
+                            <label class="chooseLabel"> <i class="fa-solid fa-user"></i>
+                                {{lang.employeeName}}</label>
+                            <select class="form-select chooseSelect" aria-label="Default select example"
+                                formControlName="employeeId" style="font: small-caption !important; ">
+                                <option value="" disabled selected>{{lang.chooseEmployee}}</option>
+                                <option *ngFor="let employee of employees" [value]="employee.id"> {{employee.name}}
+                                    {{employee.surname}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-xl-6 mb-2  modal-right custom-select-wrapper modalSelect">
+                            <label class="chooseLabel"><i class="fa-solid fa-comment"></i> {{lang.breakDescription}}</label>
+                            <input type="text" class="modal-input addClass " class="form-control"formControlName="breakDescription"style="border: 0px !important; border-bottom: 1px solid black !important;">
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-xl-6 mb-2 modalSelect custom-select-wrapper">
+                            <label class="chooseLabel"><i class="fa-solid fa-arrow-up-1-9"></i>
+                                {{lang.breakTime}}</label>
+                            <input type="number" class="modal-input " class="form-control"
+                                formControlName="breakTime"
+                                style="border: 0px !important; border-bottom: 1px solid black !important;">
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect modal-right">
+                            <label class="chooseLabel"><i class="fa-solid fa-calendar-days"></i> {{lang.breakDate}}</label>
+                            <input class="form-select forms chooseSelect detail"type="datetime-local" formControlName="breakDate">
+                        </div>
+
+                        <div class="col-lg-6 col-md-6 col-xl-6">
+                            <label class="chooseLabel mb-3">{{lang.status}}</label><br>
+                            <label class="switch">
+                                <input type="checkbox" formControlName="status">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+
+                    </div>
+                </form>
+                <div class="btn-location mt-4">
+                    <button type="button" class="button-4" data-bs-dismiss="modal"><i class="fa-solid fa-circle-xmark"></i> {{lang.cancel}}</button>
+                    <a (click)="updateEmployeeBreak()" class="button-20"><i class="fa-regular fa-pen-to-square"></i> {{lang.updateemployeebreak}} </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

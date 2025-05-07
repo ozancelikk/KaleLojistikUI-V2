@@ -1,0 +1,45 @@
+<h2>Amele Ekle</h2>
+<form [formGroup]="ameleForm" (ngSubmit)="addAmele()">
+  <input formControlName="name" placeholder="Adı" /><br />
+  <input formControlName="surname" placeholder="Soyadı" /><br />
+  <input formControlName="warehouseId" placeholder="Depo ID" /><br />
+  <input formControlName="role" placeholder="Görevi" /><br />
+  <button type="submit">Ekle</button>
+</form>
+
+<hr />
+
+<h2>Mevcut Ameleler</h2>
+<ul>
+  <li *ngFor="let a of ameleler">
+    <strong>{{ a.name }} {{ a.surname }}</strong> (Görev: {{ a.role }})<br />
+    Depo: {{ ameleDepoAdlari[a.id] || 'Yükleniyor...' }}<br />
+    <button (click)="selectAmele(a)">Güncelle</button>
+    <button (click)="deleteAmele(a.id)">Sil</button>
+    <hr />
+  </li>
+</ul>
+
+<div *ngIf="selectedAmele">
+  <h3>Amele Güncelle</h3>
+  <label>Adı:</label>
+  <input name="name" [(ngModel)]="selectedAmele.name" /><br />
+
+  <label>Soyadı:</label>
+  <input name="surname" [(ngModel)]="selectedAmele.surname" /><br />
+
+  <label>Depo ID:</label>
+  <input name="warehouseId" [(ngModel)]="selectedAmele.warehouseId" /><br />
+
+  <label>Görevi:</label>
+  <input name="role" [(ngModel)]="selectedAmele.role" /><br />
+
+  <button (click)="updateAmele()">Kaydet</button>
+</div>
+
+<hr />
+
+<h3>Ameleye Ait Depoyu Getir</h3>
+<input name="ameleId" [(ngModel)]="ameleIdForWarehouse" placeholder="Amele ID gir" />
+<button (click)="getWarehouseName()">Depo Getir</button>
+<p *ngIf="warehouseName">Depo: {{ warehouseName }}</p>

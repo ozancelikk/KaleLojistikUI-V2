@@ -1,0 +1,76 @@
+
+<nav class="navbar navbar-expand-xl navbar-light fixed-tops hk-navbar">
+    <a id="navbar_toggle_btn" class="navbar-toggle-btn nav-link-hover nav-canvas"href="#offcanvasExample" data-bs-toggle="offcanvas" aria-controls="offcanvasExample" >
+        <span class="feather-icon"> <i class="fa-solid fa-bars"></i> </span>
+      </a>
+
+      <a id="navbar_toggle_btn" class="navbar-toggle-btn nav-link-hover nav-click" style="cursor: pointer; margin-right: 1rem;" (click)="SidebarShow()">
+        <span class="feather-icon"> <i class="fa-solid fa-bars"></i> </span>
+      </a>
+
+    <a class="navbar-brand font-weight-700 d-flex justify-content-center"  [routerLink]="['/']" >
+        <div class="navbar-logo">
+            <img src="/assets/img/logo-Black.png" alt="user" class="avatar-img ">
+        </div>
+    </a>
+  
+    <ul class="navbar-nav hk-navbar-content" >
+        <li class="nav-item dropdown dropdown-notifications">
+            <a class="nav-link dropdown-toggle no-caret" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" (click)="readNotification()" >
+                <span class="feather-icon"> <i id="bell"  class="fa-solid fa-bell"></i>  </span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-end">
+            <div class="" data-bs-dropdown-in="slideInLeft" data-bs-dropdown-out="slideOutLeft">
+                <h6 class="dropdown-header">{{lang.dutys}}</h6>
+                <ng-container *ngFor="let duty of dutyDetail">
+                    <div class="notifications-nicescroll-bar" (click)="getDetailDuty(duty.id)" data-bs-toggle="modal" data-bs-target="#dutyDetailModal" >
+                        <a class="dropdown-item">
+                            <div class="media">
+                                <div class="media-img-wrap">
+                                    <i class="fa-solid fa-list"></i>
+                                </div>
+                                <div class="media-body">
+                                    <div>
+                                        <div class="notifications-time">{{duty.dutyTitle}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div></ng-container>
+                
+            </div>
+        </div>
+        </li>
+        
+
+        <li class="nav-item dropdown dropdown-authentication">
+            <a class="nav-link dropdown-toggle no-caret" href="#" role="button" data-bs-toggle="dropdown" data-bs-target="#userDropdown" aria-haspopup="true" aria-expanded="false">
+                <div class="media">
+                    <div class="media-img-wrap">
+                        <div class="avatar">
+                            <img [src]="getImagePath()" alt="user" class="avatar-img rounded-circle">
+                        </div>
+                        <span class="badge badge-success badge-indicator"></span>
+                    </div>
+                    <div class="media-body">
+
+                        <span class="user-name"> {{userName}}</span>
+
+                        <i class="fa-solid fa-caret-down"></i>
+                    </div>
+                </div>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" data-dropdown-in="flipInX" data-dropdown-out="flipOutX" id="userDropdown">
+                <a class="dropdown-item" *ngIf="userStatus"  [routerLink]="['/user-profile']" ><i class="fa-solid fa-user"></i><span>{{lang.profile}}</span></a>
+                <a class="dropdown-item" *ngIf="employeeStatus"  [routerLink]="['/employee-profile']" ><i class="fa-solid fa-user"></i><span>{{lang.employeeProfile}}</span></a>
+                <a class="dropdown-item" [routerLink]="['/transaction-history']"><i class="fa-solid fa-triangle-exclamation"></i><span>{{lang.transactionHistory}}</span></a>
+                <a class="dropdown-item" [routerLink]="['/mail-sender']"><i class="fa-solid fa-envelope"></i><span>{{lang.mailSenderConfigration}}</span></a>
+                <a class="dropdown-item" [routerLink]="['/error-log']"><i class="fa-solid fa-circle-exclamation"></i><span>{{lang.errorLogs}}</span></a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" (click)="Logout()"><i class="fa-solid fa-right-from-bracket"></i><span>{{lang.logout}}</span></a>
+            </div>
+        </li>
+        
+    </ul>
+</nav>
+<app-navbar-duty-detail [cleaningDutyDetail]="dutysDetail" ></app-navbar-duty-detail>

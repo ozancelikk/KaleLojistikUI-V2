@@ -1,0 +1,198 @@
+<style>
+  form, .section, .card {
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 8px;
+    background-color: #fafafa;
+  }
+
+  input, select {
+    margin-bottom: 10px;
+    padding: 5px;
+    width: 100%;
+  }
+
+  button {
+    margin-top: 10px;
+    padding: 6px 12px;
+    cursor: pointer;
+  }
+
+  h2, h3, h4 {
+    margin-bottom: 10px;
+  }
+
+  ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+
+  li {
+    background-color: #f2f2f2;
+    padding: 8px;
+    margin-bottom: 5px;
+    border-radius: 4px;
+  }
+</style>
+
+<!-- GÖNDERİCİ SEÇİMİ -->
+<div class="section">
+  <h2>Kargo Ekle</h2>
+  <label>
+    <input type="checkbox" [(ngModel)]="yeniGondericiEkle" name="yeniGondericiEkle" />
+    Yeni Gönderici Ekle
+  </label>
+</div>
+
+<!-- YENİ GÖNDERİCİ FORMU -->
+<div *ngIf="yeniGondericiEkle" class="card">
+  <h4>Gönderici Bilgileri</h4>
+  <form [formGroup]="gondericiForm">
+    <input formControlName="name" placeholder="Adı" />
+    <input formControlName="phone" placeholder="Telefon" />
+    <input formControlName="email" placeholder="Email" />
+    <input formControlName="adress" placeholder="Adres" />
+  </form>
+</div>
+
+<!-- MEVCUT GÖNDERİCİ -->
+<div *ngIf="!yeniGondericiEkle" class="card">
+  <label>Gönderici Seç:</label>
+  <select [(ngModel)]="selectedSenderId" name="senderId">
+    <option *ngFor="let sender of gondericiler" [value]="sender.id">
+      {{ sender.name }} - {{ sender.phone }}
+    </option>
+  </select>
+</div>
+
+<!-- KARGO FORMU -->
+<form [formGroup]="shipmentForm" (ngSubmit)="addShipment()" class="card">
+  <input formControlName="receiverName" placeholder="Alıcı Adı" />
+  <input formControlName="receiverPhone" placeholder="Alıcı Telefon" />
+  <input formControlName="receiverEmail" placeholder="Alıcı Email" />
+  Ağırlık
+  <input formControlName="weight" type="number" placeholder="Ağırlık (kg)" />
+
+  <label>Kargo Türü:</label>
+  <select formControlName="shipmentType">
+    <option value="Normal">Normal</option>
+    <option value="Express">Express</option>
+    <option value="Rapid">Rapid</option>
+  </select>
+
+  <input formControlName="deliveryAddress" placeholder="Teslimat Adresi" />
+
+  <label>Depo:</label>
+  <select formControlName="warehouseId">
+    <option *ngFor="let w of warehouseList" [value]="w.id">{{ w.name }}</option>
+  </select>
+
+  <button type="submit">Kargo Oluştur</button>
+</form>
+
+<p *ngIf="createdTrackingNumber" style="color: green;">
+  Kargo oluşturuldu! Takip Numarası: <strong>{{ createdTrackingNumber }}</strong>
+</p>
+
+
+<!-- TÜM KARGOLAR -->
+<div class="section">
+  <h2>Kargolar</h2>
+  <ul>
+    <li *ngFor="let s of shipments">
+      <strong>{{ s.trackingNumber }}</strong> - {{ s.receiverName }} - {{ s.shipmentType }}
+    </li>
+  </ul>
+</div>
+
+<!-- KARGO SORGULAMA -->
+<div class="section">
+  <h3>Takip Numarası ile Sorgula</h3>
+  <input #trackingInput type="text" placeholder="Takip Numarası" />
+  <button (click)="getShipmentByTrackingNumber(trackingInput.value)">Sorgula</button>
+</div>
+
+<!-- KARGO DETAY -->
+<div *ngIf="selectedShipment" class="card">
+  <h3>Seçilen Kargo</h3>
+  <p><strong>ID:</strong> {{ selectedShipment.id }}</p>
+  <p><strong>Takip No:</strong> {{ selectedShipment.trackingNumber }}</p>
+  <p><strong>Alıcı:</strong> {{ selectedShipment.receiverName }}</p>
+  <p><strong>Adres:</strong> {{ selectedShipment.deliveryAddress }}</p>
+  <p><strong>Durum:</strong> {{ selectedShipment.shipmentType }}</p>
+
+  <h4>Durum Geçmişi</h4>
+  <ul>
+    <li *ngFor="let record of selectedShipment.statusRecords">
+      {{ record.timestamp | date: 'short' }} - {{ record.status }}
+    </li>
+  </ul>
+</div>
+
+<!-- DURUM GÜNCELLEME -->
+<div *ngIf="selectedShipment" class="card">
+  <h4>Durum Güncelle</h4>
+  <input [(ngModel)]="statusInput" placeholder="Yeni Durum" />
+  <button (click)="updateShipmentStatus()">Güncelle</button>
+</div>
+
+<!-- TESLİMAT ONAY -->
+<div class="section">
+  <button (click)="confirmSelectedShipmentDelivery()">Teslimat Onayla</button>
+</div>
+
+<!-- KARGO SİLME -->
+<div class="section">
+  <h3>Takip Numarası ile Kargo Sil</h3>
+  <input [(ngModel)]="trackingNumberToDelete" placeholder="Takip numarası" />
+  <button (click)="deleteByTrackingNumber()">Sil</button>
+</div>
+
+<!-- ÇALIŞAN SORGULAMA -->
+<div class="section">
+  <h3>Kargoya Atanan Çalışanı Sorgula</h3>
+  <input [(ngModel)]="shipmentIdForEmployee" placeholder="Shipment ID" />
+  <button (click)="getAssignedEmployeeByInput()">Getir</button>
+
+  <div *ngIf="assignedEmployee">
+    <p><strong>Ad:</strong> {{ assignedEmployee.name }}</p>
+    <p><strong>Soyad:</strong> {{ assignedEmployee.surname }}</p>
+  </div>
+</div>
+
+<!-- KARGO GÜNCELLEME -->
+<div *ngIf="selectedShipment" class="card">
+  <h3>Kargo Güncelle</h3>
+  <input [(ngModel)]="selectedShipment.receiverName" placeholder="Alıcı Adı" />
+  <input [(ngModel)]="selectedShipment.receiverPhone" placeholder="Telefon" />
+  <input [(ngModel)]="selectedShipment.receiverEmail" placeholder="Email" />
+  <input [(ngModel)]="selectedShipment.deliveryAddress" placeholder="Adres" />
+  <input type="number" [(ngModel)]="selectedShipment.weight" placeholder="Ağırlık" />
+  <select [(ngModel)]="selectedShipment.shipmentType">
+    <option value="Express">Express</option>
+    <option value="Normal">Normal</option>
+    <option value="Rapid">Rapid</option>
+  </select>
+  <button (click)="updateShipment()">Kaydet</button>
+</div>
+
+<!-- ÜCRET HESAPLAMA -->
+<div class="section">
+  <h3>Kargo Ücreti Hesapla</h3>
+  <input type="number" [(ngModel)]="hesaplamaAgirlik" placeholder="Ağırlık (kg)" />
+  <input [(ngModel)]="hesaplamaTip" placeholder="Kargo Tipi (Standart/Express)" />
+  <button (click)="kargoUcretiHesapla()">Hesapla</button>
+  <p *ngIf="hesaplananUcret">Toplam Ücret: {{ hesaplananUcret }}₺</p>
+</div>
+
+<!-- TESLİM EDİLENLER -->
+<div class="section">
+  <h3>Teslim Edilmiş Kargolar</h3>
+  <button (click)="getDeliveredShipments()">Getir</button>
+  <ul>
+    <li *ngFor="let s of deliveredShipments">
+      <strong>{{ s.trackingNumber }}</strong> - {{ s.receiverName }} - Teslim Edildi
+    </li>
+  </ul>
+</div>

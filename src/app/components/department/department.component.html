@@ -1,0 +1,26 @@
+<div class="modal fade" id="departmentModal" tabindex="-1" aria-labelledby="departmentModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="departmentModalLabel">{{lang.departments}}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            
+            <div class="modal-body">
+                <app-department-navbar></app-department-navbar>
+                <ag-grid-angular id="datatable" style="width: 100%;height: 40vh;" class="ag-theme-alpine"
+                    [columnDefs]="columnDefs" [defaultColDef]="defaultColDef" [rowSelection]="'multiple'"
+                    [enableCellTextSelection]="true" [cacheBlockSize]="cacheBlockSize"
+                    [cacheOverflowSize]="cacheOverflowSize"
+                    [maxConcurrentDatasourceRequests]="maxConcurrentDatasourceRequests"
+                    [infiniteInitialRowCount]="infiniteInitialRowCount" [enableBrowserTooltips]="true"
+                    [overlayNoRowsTemplate]="noRowsTemplate" [maxBlocksInCache]="maxBlocksInCache" [rowData]="rowData"
+                    [gridOptions]="gridOptions" (gridReady)="onGridReady($event)"
+                    [suppressScrollOnNewData]="true"></ag-grid-angular>
+            </div>
+        </div>
+    </div>
+</div>
+<app-department-update [departmentDetail]="department" (departmentUpdateEvent)="getAll()"></app-department-update>
+<app-department-add (departmentAddEvent)="getAll()"></app-department-add>
+<app-department-role-update (departmentEvent)="getAll()" [departmentDetail]="department"></app-department-role-update>

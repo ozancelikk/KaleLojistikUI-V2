@@ -1,0 +1,15 @@
+<div class="container-fluid" style="padding-left: 20px;padding-right: 20px;">
+    <app-navbar-additional-task (navbarEvent)="getAll()"></app-navbar-additional-task>
+    <ag-grid-angular id="datatable" style="width: 100%;height: 80vh;" class="ag-theme-alpine" [columnDefs]="columnDefs"
+        [defaultColDef]="defaultColDef" [rowSelection]="'multiple'" [enableCellTextSelection]="true"
+        [cacheBlockSize]="cacheBlockSize" [cacheOverflowSize]="cacheOverflowSize"
+        [maxConcurrentDatasourceRequests]="maxConcurrentDatasourceRequests"
+        [infiniteInitialRowCount]="infiniteInitialRowCount" [enableBrowserTooltips]="true"
+        [overlayNoRowsTemplate]="noRowsTemplate" [maxBlocksInCache]="maxBlocksInCache" [rowData]="rowData"
+        [gridOptions]="gridOptions" (gridReady)="onGridReady($event)"
+        [suppressScrollOnNewData]="true"></ag-grid-angular>
+        <app-add-additional-task (additionalTaskEvent)="getAll()"></app-add-additional-task>
+        <app-detail-additional-task [tasks]="additionalTasked"></app-detail-additional-task>
+        <app-update-additional [additionalDetail]="additionalTasked" (additionalUpdateEvent)="getAll()"> </app-update-additional>
+        <!-- <app-update-additional-task [additionalTaskDetail]="additionalTasked" (additionalTaskUpdateEvent)="getAll()"></app-update-additional-task> -->
+</div>

@@ -1,0 +1,70 @@
+<div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" *app="updateRole" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header" style="box-shadow: none !important;">
+          <h6  id="updateModalLabel"><i class="fa-regular fa-pen-to-square"></i> {{lang.updateRoom}}</h6>
+        </div>
+        <div class="modal-body">
+        <form [formGroup]="roomUpdateForm" *ngIf="roomUpdateForm"> 
+          <div class="mb-3">
+            <label class="chooseLabel"><i class="fa-solid fa-tag"></i> {{lang.roomName}}</label>
+            <input type="text" class="modal-input" class="form-control" formControlName="roomName">
+          </div>
+          <div class="mb-3">
+            <label class="chooseLabel"><i class="fa-solid fa-arrow-down-1-9"></i> {{lang.roomNumber}}</label>
+            <input type="text" class="modal-input" class="form-control" formControlName="roomNumber">
+          </div>
+          <div class="mb-3">
+            <label class="chooseLabel"><i class="fa-solid fa-comment"></i> {{lang.roomDescription}}</label>
+            <input type="text" class="modal-input" class="form-control" formControlName="roomDescription">
+          </div>
+          <div class="row">
+            <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect">
+              <label class="chooseLabel"><i class="fa-solid fa-code-branch"></i> {{lang.branchName}}</label>
+              <select class="form-select chooseSelect" aria-label="Default select example" formControlName="branchId"
+                (change)="onBranchChange($event)" style="font: small-caption !important;">
+                <option value="" disabled selected>{{lang.chooseBranch}}</option>
+                <option *ngFor="let branch of branchs" [value]="branch.id"> {{branch.branchName}} </option>
+              </select>
+            </div>
+            <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect" style="padding-right: 0px !important;">
+              <label class="chooseLabel"><i class="fa-regular fa-building icon-spacing"></i> {{lang.blockName}}</label>
+              <select class="form-select chooseSelect" aria-label="Default select example" formControlName="blockId"
+                (change)="onBlockChange($event)" style="font: small-caption !important;">
+                <option value="" disabled selected>{{lang.chooseBlock}}</option>
+                <option *ngFor="let block of blocks" [value]="block.id"> {{block.blockName}} </option>
+              </select>
+            </div>
+            <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect">
+              <label class="chooseLabel"><i class="fa-solid fa-stairs icon-spacing icon-spacing"></i> {{lang.floorName}}</label>
+              <select class="form-select chooseSelect" aria-label="Default select example" formControlName="floorId"
+                (change)="onFloorChange($event)" style="font: small-caption !important;">
+                <option value="" disabled selected>{{lang.chooseFloor}}</option>
+                <option *ngFor="let floor of floors" [value]="floor.id"> {{floor.floorName}} </option>
+              </select>
+            </div>
+            <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect" style="padding-right: 0px !important;">
+              <label class="chooseLabel "><i class="fa-solid fa-door-open icon-spacing"></i>{{lang.hallwayName}}</label>
+              <select class="form-select chooseSelect" aria-label="Default select example" formControlName="hallwayId"
+                style="font: small-caption !important;">
+                <option value="" disabled selected>{{lang.chooseHallway}}</option>
+                <option *ngFor="let hallway of hallways" [value]="hallway.id"> {{hallway.hallwayName}} </option>
+              </select>
+            </div>
+            <div class="col-lg-6 col-md-6 col-xl-6 custom-select-wrapper modalSelect">
+              <label class="chooseLabel">{{lang.status}}</label><br>
+              <label class="switch">
+                <input type="checkbox" formControlName="status">
+                <span class="slider round"></span>
+              </label>
+            </div>
+          </div>
+          </form>
+          <div class="btn-location mt-4">
+            <button type="button" class="button-4" data-bs-dismiss="modal">{{lang.cancel}}</button>
+            <a (click)="updateRoom()" class="button-20" ><i class="fa-regular fa-pen-to-square"></i> {{lang.update}} </a>
+          </div>
+      </div>
+     </div>
+   </div>
+    </div>

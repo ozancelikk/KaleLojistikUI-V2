@@ -1,0 +1,93 @@
+
+<div class="modal fade" id="employeeDetailModal" tabindex="-1" aria-labelledby="employeeDetailModalLabel"
+aria-hidden="true">
+<div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-6" id="employeeDetailModalLabel"><i class="fa-solid fa-circle-info"></i> {{lang.employeeDetail}}</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" *ngIf="employee">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-xl-6">
+                    <label class="chooseLabel"><i class="fa-solid fa-tag"></i>{{lang.name}}</label>
+                    <input class="modal-input form-control" type="text" readonly value="{{employee.name}}">
+                </div>
+                <div class="col-lg-6 col-md-6 col-xl-6">
+                    <label class="chooseLabel"><i class="fa-solid fa-tags"></i>{{lang.surname}}</label>
+                    <input class="modal-input form-control" type="text" readonly value="{{employee.surname}}">
+                </div>
+                <div class="col-lg-6 col-md-6 col-xl-6">
+                    <label class="chooseLabel"><i class="fa-solid fa-cake-candles"></i>{{lang.age}}</label>
+                    <input class="modal-input form-control" type="text" readonly value="{{employee.age}}">
+                </div>
+                <div class="col-lg-6 col-md-6 col-xl-6">
+                    <label class="chooseLabel"><i class="fa-solid fa-hourglass-start"></i>{{lang.dateOfStart}}</label>
+                    <input class="modal-input form-control" type="text" readonly value="{{employee.dateOfStart}}">
+                </div>
+                <div class="col-lg-6 col-md-6 col-xl-6">
+                    <label class="chooseLabel"><i class="fa-solid fa-hourglass-end"></i> {{lang.dateOfFinish}}</label>
+                    <input class="modal-input form-control" type="text" readonly value="{{employee.dateOfFinish}}">
+                </div>
+                <div class="col-lg-6 col-md-6 col-xl-6">
+                    <label class="chooseLabel"><i class="fa-solid fa-envelope"></i>{{lang.email}}</label>
+                    <input class="modal-input form-control" type="text" readonly value="{{employee.email}}">
+                </div>
+                <div class="col-lg-6 col-md-6 col-xl-6">
+                    <label class="chooseLabel"><i class="fa-solid fa-phone"></i>{{lang.phonenumber}}</label>
+                    <input class="modal-input form-control" type="text" readonly value="{{employee.phoneNumber}}">
+                </div>
+                <div class="col-lg-6 col-md-6 col-xl-6">
+                    <label class="chooseLabel"><i class="fa-solid fa-user-tag"></i>{{lang.title}}</label>
+                    <input class="modal-input form-control" type="text" readonly value="{{employee.title}}">
+                </div>
+                <div class="col-lg-6 col-md-6 col-xl-6">
+                    <label class="chooseLabel"><i class="fa-solid fa-cake-candles"></i>{{lang.birthDay}}</label>
+                    <input class="modal-input form-control" type="text" readonly value="{{employee.birthDay}}">
+                </div>
+                <div class="col-lg-6 col-md-6 col-xl-6">
+                    <label class="chooseLabel"><i class="fa-solid fa-droplet"></i> {{lang.bloodGroup}}</label>
+                    <input class="modal-input form-control" type="text" readonly value="{{employee.bloodGroup}}">
+                </div>
+                <div class="col-lg-6 col-md-6 col-xl-6">
+                    <label class="chooseLabel"><i class="fa-solid fa-graduation-cap"></i> {{lang.educationalStatus}}</label>
+                    <input class="modal-input form-control" type="text" readonly value="{{employee.educationalStatus}}">
+                </div>
+                <div class="col-lg-6 col-md-6 col-xl-6">
+                    <label class="chooseLabel"><i class="fa-solid fa-arrow-down"></i> {{lang.lowerSize}}</label>
+                    <input class="modal-input form-control" type="text" readonly value="{{employee.lowerSize}}">
+                </div>
+                <div class="col-lg-6 col-md-6 col-xl-6">
+                    <label class="chooseLabel"><i class="fa-solid fa-arrow-up"></i> {{lang.upperSize}}</label>
+                    <input class="modal-input form-control" type="text" readonly value="{{employee.upperSize}}">
+                </div>
+                <div class="col-lg-6 col-md-6 col-xl-6">
+                    <label class="chooseLabel"><i class="fa-solid fa-shoe-prints"></i> {{lang.shoeSize}}</label>
+                    <input class="modal-input form-control" type="text" readonly value="{{employee.shoeSize}}">
+                </div>
+                <div class="col-lg-6 col-md-6 col-xl-6">
+                    <label class="chooseLabel"><i class="fa-solid fa-user-tag"></i>{{lang.emergencyContactName}}</label>
+                    <input class="modal-input form-control" type="text" readonly value="{{employee.emergencyContactName}}">
+                </div>
+                <div class="col-lg-6 col-md-6 col-xl-6">
+                    <label class="chooseLabel"><i class="fa-solid fa-square-phone-flip"></i> {{lang.emergencyContactNumber}}</label>
+                    <input class="modal-input form-control" type="text" readonly value="{{employee.emergencyContactNumber}}">
+                </div>
+                <div class="col-lg-6 col-md-6 col-xl-6">
+                    <label class="chooseLabel"><i class="fa-solid fa-user-tag"></i> {{lang.emergencyContactRelationship}}</label>
+                    <input class="modal-input form-control" type="text" readonly value="{{employee.emergencyContactRelationship}}">
+                </div>
+                <div class="col-lg-6 col-md-6 col-xl-6" *ngIf="employee.status">
+                    <label class="chooseLabel"><i class="fa-solid fa-circle-check"></i>{{lang.status}}</label>
+                    <input class="modal-input form-control" type="text" readonly value="{{lang.active}}">
+                </div>
+                <div class="col-lg-6 col-md-6 col-xl-6" *ngIf="!employee.status">
+                    <label class="chooseLabel"><i class="fa-solid fa-circle-xmark"></i>{{lang.status}}</label>
+                    <input class="modal-input form-control" type="text" readonly value="{{lang.passive}}">
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+</div>

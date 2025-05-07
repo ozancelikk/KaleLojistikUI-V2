@@ -1,0 +1,26 @@
+<div class="modal fade" id="dutyTagModal" tabindex="-1" aria-labelledby="dutyTagModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="dutyTagModalLabel">{{lang.dutyTags}}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            
+            <div class="modal-body">
+                <app-navbar-duty-tag></app-navbar-duty-tag>
+                <ag-grid-angular id="datatable" style="width: 100%;height: 40vh;" class="ag-theme-alpine"
+                    [columnDefs]="columnDefs" [defaultColDef]="defaultColDef" [rowSelection]="'multiple'"
+                    [enableCellTextSelection]="true" [cacheBlockSize]="cacheBlockSize"
+                    [cacheOverflowSize]="cacheOverflowSize"
+                    [maxConcurrentDatasourceRequests]="maxConcurrentDatasourceRequests"
+                    [infiniteInitialRowCount]="infiniteInitialRowCount" [enableBrowserTooltips]="true"
+                    [overlayNoRowsTemplate]="noRowsTemplate" [maxBlocksInCache]="maxBlocksInCache" [rowData]="rowData"
+                    [gridOptions]="gridOptions" (gridReady)="onGridReady($event)"
+                    [suppressScrollOnNewData]="true"></ag-grid-angular>
+            </div>
+        </div>
+    </div>
+</div>
+<app-add-duty-tag (dutyTagEvent)="getAll()"></app-add-duty-tag>
+<app-update-duty-tag [dutyTagDetail]="dutyTag" (dutyTagUpdateEvent)="getAll()"></app-update-duty-tag>
+

@@ -1,0 +1,46 @@
+<h2>Depo Ekle</h2>
+<form [formGroup]="warehouseForm" (ngSubmit)="addWarehouse()">
+  <input formControlName="name" placeholder="Depo Adı" /><br />
+  <input formControlName="capacity" type="number" placeholder="Kapasite" /><br />
+  <input formControlName="address" placeholder="Adres" /><br />
+  <button type="submit">Ekle</button>
+</form>
+
+<hr />
+
+<h2>Mevcut Depolar</h2>
+<ul>
+  <li *ngFor="let w of warehouses">
+    <strong>{{ w.name }}</strong> - Kapasite: {{ w.capacity }} - Adres: {{ w.address }}
+    <br />
+    <button (click)="selectWarehouse(w)">Güncelle</button>
+    <button (click)="deleteWarehouse(w.id)">Sil</button>
+    <hr />
+  </li>
+</ul>
+
+<div *ngIf="selectedWarehouse">
+  <h3>Depoyu Güncelle</h3>
+  <label>Ad:</label>
+  <input [(ngModel)]="selectedWarehouse.name" name="updateName" /><br />
+  <label>Kapasite:</label>
+  <input [(ngModel)]="selectedWarehouse.capacity" type="number" name="updateCap" /><br />
+  <label>Adres:</label>
+  <input [(ngModel)]="selectedWarehouse.address" name="updateAddr" /><br />
+  <button (click)="updateWarehouse()">Kaydet</button>
+</div>
+
+<hr />
+
+<h3>Depoya Ait Kargoları Göster</h3>
+<input [(ngModel)]="warehouseIdForShipments" placeholder="Depo ID girin" name="searchWarehouseId" />
+<button (click)="getShipmentsForWarehouse()">Kargoları Getir</button>
+
+<div *ngIf="relatedShipments.length > 0">
+  <h4>Bu depoya ait kargolar:</h4>
+  <ul>
+    <li *ngFor="let s of relatedShipments">
+      <strong>{{ s.trackingNumber }}</strong> - {{ s.receiverName }} - {{ s.shipmentType }}
+    </li>
+  </ul>
+</div>

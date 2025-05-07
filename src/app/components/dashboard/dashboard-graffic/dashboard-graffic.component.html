@@ -1,0 +1,101 @@
+<div class="row">
+  <div class="dashboard-container col-lg-6 col-xl-6 col-md-6">
+      <div class="dashboard-cards row">
+        <div class="card card-sm col-lg-12 col-xl-12 col-md-12 card-with card-with-small" [routerLink]="['/employee']" routerLinkActive="router-link-active" >
+          <div class="card-body">
+            <div class="card-title">{{lang.employeeCount}}</div>
+            <div class="card-value">{{dashboardData?.dashboard?.employeeCount}}</div>
+            <div class="card-subtitle">{{lang.ttdEmployeeAnalysis}}</div>
+          </div>
+        </div>
+
+        <div class="card card-sm col-lg-12 col-xl-12 col-md-12 card-with-small card-left-margin">
+          <div class="card-body"  [routerLink]="['/duty']">
+            <div class="card-title">{{lang.dutyCount}}</div>
+            <div class="card-value">{{dutyCount}}</div>
+            <div class="card-subtitle">{{lang.ttdDutyAnalysis}}</div>
+          </div>
+        </div>
+
+        <div class="card card-sm col-lg-12 col-xl-12 col-md-12 card-with card-with-small card-margin" >
+          <div class="card-body" [routerLink]="['/duty']">
+            <div class="card-title">{{lang.weeklyCompletedTaskCount}}</div>
+            <div class="card-value">{{dashboardData?.dashboard?.weeklyDutyCount}}</div>
+            <div class="card-subtitle">{{lang.ttdDutyAnalysis}}</div>
+          </div>
+        </div>
+
+        <div class="card card-sm col-lg-12 col-xl-12 col-md-12 card-with-small card-margin card-left-margin">
+          <div class="card-body" [routerLink]="['/duty']">
+            <div class="card-title">{{lang.monthlyCompletedTaskCount}}</div>
+            <div class="card-value">{{dashboardData?.dashboard?.mounthlyDutyCount}}</div>
+            <div class="card-subtitle">{{lang.ttdDutyAnalysis}}</div>
+          </div>
+        </div>
+      </div>
+  </div>
+
+  <div class="dashboard-charts col-lg-6 col-md-6 col-xl-6">
+    <div *ngIf="!weeklyDataLoad" class="spinner-border text-primary"></div>
+    <div class="echarts-size-update" style="width: 100% !important;">
+      <div id="weeklychart" style="height: 300px;width: 100%;">
+      </div>
+    </div>
+  </div>
+
+
+  <div class="chart-org col-lg-6 col-md-6 col-xl-6">
+    <div class="year-chart">
+      <div *ngIf="!yearlyDataLoad" class="spinner-border text-primary"></div>
+      <div class="card-body">
+        <div class="echarts-size">
+          <div id="optionyear" style="height: 300px;width: 100%;">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="chart-org col-lg-6 col-md-6 col-xl-6">
+    <div class="dailyCharts">
+      <div *ngIf="!dailyDataLoad" class="spinner-border text-primary">
+      </div>
+      <div class="card-body">
+        <div class="echarts-size">
+          <div id="dailychart" style="height: 300px;width: 100%;"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="chart-org col-lg-6 col-md-6 col-xl-6">
+    <div class="card-employee">
+      <div class="card-header pb-0 p-3"
+        style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-top-left-radius: 15px; border-top-right-radius: 15px;">
+        <div class="d-flex justify-content-between">
+          <h6 class="mb-2">{{lang.lastTenDuty}}</h6>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <table class="table align-items-center ">
+          <tbody>
+            <tr *ngFor="let item of duty">
+              <td class="w-30">
+                <div class="ms-4">
+                  <h6 class="text-sm mb-0">{{item?.dutyTitle}}</h6>
+                </div>
+              </td>
+              <td class="align-middle text-sm">
+                <div class="col text-center">
+                  <p class="text-xs font-weight-bold mb-0"></p>
+                  <h6 class="text-sm mb-0">{{item?.createdDate}} </h6>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

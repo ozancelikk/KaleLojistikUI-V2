@@ -1,0 +1,22 @@
+<h3>{{ selectedSender ? 'Gönderen Güncelle' : 'Yeni Gönderen Ekle' }}</h3>
+
+<form [formGroup]="senderForm" (ngSubmit)="selectedSender ? updateSender() : addSender()">
+  <input formControlName="name" placeholder="Ad" required />
+  <input formControlName="email" placeholder="Email" />
+  <input formControlName="phoneNumber" placeholder="Telefon" />
+  <input formControlName="address" placeholder="Adres" />
+
+  <button type="submit">{{ selectedSender ? 'Güncelle' : 'Ekle' }}</button>
+  <button type="button" *ngIf="selectedSender" (click)="cancelEdit()">İptal</button>
+</form>
+
+<hr />
+
+<h3>Gönderen Listesi</h3>
+<ul>
+  <li *ngFor="let sender of senders">
+    <strong>{{ sender.name }}</strong> - {{ sender.phoneNumber }}
+    <button (click)="selectSender(sender)">Düzenle</button>
+    <button (click)="deleteSender(sender.id!)">Sil</button>
+  </li>
+</ul>

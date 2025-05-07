@@ -1,0 +1,72 @@
+<div class="container" style="max-width: 100% !important ">
+  <div class="row" *ngIf="rooms?.length>0">
+    <div class="col-xl-4 card-screen-medium"
+      *ngFor="let room of rooms |branchFilter:filterText:'roomName'| paginate: { itemsPerPage: getPaginationSize(), currentPage: page,totalItems: rooms?.length, id: 'first'}">
+      <div class="card">
+        <div class="row no-gutters" [ngClass]="{'status':!room.status}">
+          <div class="col-4 left-section">
+            <h6 class="card-title text-white">{{lang.details}}</h6>
+            <div class="card-body text-start">
+              <ng-container *ngFor="let dutyCount of dutyCounts">
+                <ul class="ul-group" *ngIf="dutyCount.roomId==room.id" style="padding-left: 0px;">
+                  <div>
+                    <li>
+                      <p>{{lang.dutyCount}} : <span>{{ dutyCount.count }}</span></p>
+                    </li>
+                  </div>
+                </ul>
+              </ng-container>
+            </div>
+          </div>
+          <div class="col-8 right-section">
+            <div class="top-section">
+              <h6 class="card-title"><i class="fa-solid fa-house icon-spacing icon-spacing"></i> {{ room.roomName }}
+              </h6>
+              <div class="card-title-setting-btn">
+                <div class="dropdown">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    <i class="fa-solid fa-gear"></i>
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#updateModal"
+                        (click)="getByRoom(room.id)"><i class="fa-regular fa-pen-to-square"></i> {{lang.update}}</a>
+                    </li>
+                    <li><a class="dropdown-item" (click)="onDeleteRoomId(room.id)"> <i
+                          class="fa-regular fa-trash-can"></i> {{lang.delete}}</a></li>
+                    <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#detailModal"
+                        (click)="onDetailsRoomId(room.id)"><i class="fa-solid fa-circle-info"></i> {{lang.details}}</a>
+                    </li>
+                    <!-- <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#qrCodeModal"
+                        (click)="getByRoom(room.id)"><i class="fa-solid fa-qrcode"></i> {{lang.qrCodeDetails}}</a>
+                    </li> -->
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="echarts-size">
+              <app-room-charts [roomControls]="dutiesCountByBlock" [roomInfo]="dutiesCountByBlock" [roomId]="room.id">
+              </app-room-charts>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" *ngIf="rooms?.length==0">
+    <div class="col-xl-12">
+      <div class="card">
+        <div class="card-body">
+          <h6 class="card-title">{{lang.noDataFound}}</h6>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <pagination-controls nextLabel="İleri" previousLabel="Geri" id="pagination" class="pagination"
+    (pageChange)="page=$event" id="first"> </pagination-controls>
+</div>
+<app-add-room (roomEvent)="getAllRoom()" (roomGraficEvent)="getAllWithDutyCount()"></app-add-room>
+<app-update-room (roomEvent)="getAllRoom()" [roomDetail]="room"></app-update-room>
+<app-detail-room [roomDetail]="roomId"></app-detail-room>
+<app-qr-code [qrCode]="room"></app-qr-code>
